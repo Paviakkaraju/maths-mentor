@@ -1,0 +1,318 @@
+What is Probability?
+Probability is a way of measuring how likely an event is to happen. It is found by dividing the number of outcomes you want (favourable outcomes) by the total number of possible outcomes.
+
+Formula:
+Probability of an event = Favourable outcomes ÷ Total outcomes = x / n
+
+For example, we use probability to predict the result of tossing a coin, rolling a die, or picking a card from a deck.
+
+
+There are two main types of probability:
+
+Theoretical probability – based on reasoning and known facts.
+Experimental probability – based on actual experiments or observations.
+
+
+Terminology of Probability Theory
+Sample Point: It denotes one of the possible outcomes. For example, in a deck of cards 4 of hearts is a sample point, similarly, the queen of clubs is a sample point.
+Experiment or Trial: A series of trials where the results are always unpredictable. For example, the tossing of a coin, picking a card from a deck of cards, rolling dice, etc.
+Random Experiment: This is an action where the result is uncertain, that is an experiment whose outcome cannot be predicted with certainty. For example, the throwing of dice or a coin, or selecting a card from a group of cards, etc.
+Sample Space: The set of all probable outcomes is termed sample space, It is denoted by S.
+Favourable outcomes: The favourable outcomes as the name signifies are the outcomes in which an individual is interested.
+Event: The possible subsets of the sample space linked with a random experiment are termed as the event of an experiment. Events are categorized based on their occurrence as follows;
+Equally likely events: Any set of events is said to be equally likely if they have an equal possibility to occur. Consider an example: When a dice is thrown the six(occurrences of 1 to 6) events are equally likely.
+Exhaustive events: A set of events is said to be exhaustive if at least one of them surely occurs whenever the experiment is executed. Consider the same above example of tossing the coin, here all the events from 1 to 6 are exhaustive.
+Mutually exclusive events: A set of events is said to be mutually exclusive if the occurrence of one of the events excludes/prevents the possibility of the occurrence of any additional event. Mutually exclusive events happen in the identical sample space. Suppose if A and B both are mutually exclusive events in the same sample space then P(A∩B) = 0.
+Independent Events: A set of events is said to be independent if the occurrence of an event is not influenced/ affected by the occurrence of the rest of the events. Independent events occur in different sample spaces. Suppose if A and B both are independent events in different sample spaces then P(A∩B) = P(A)P(B).
+Dependent Events: If the occurrence of one event influences or affects the probability of another event then the two events are said to be dependent. Now that we are familiar with the definitions and terms of probability let’s head towards the concept of probability, its definition, and other related concepts.
+Complimentary event: This type of event denotes the non-happening of events. The complement of an event P is the event, not P (or P’).
+Impossible Event: The event that cannot happen is called an impossible event. For example, in tossing a coin it is impossible to get both head and tail at an equal time.
+
+
+Probability Definition in Maths
+The mathematical definition of probability of an event is defined as the ratio of the number of cases in its favor to the total number of cases. Consider S as a sample space and E be an event such that n(S) = n, n(E) = m and each outcome is equally likely. Then;
+
+p(E) = n(E) / n(S) = m / n = Number of favourable outcomes of E / Total number of possible outcomes
+
+
+Events in Probability
+In probability, an event is simply a group of possible results from an experiment. These results come from something called the sample space, which is the set of all possible outcomes.
+
+If P(E) shows the probability of an event E, then:
+
+P(E) = 0 → The event can never happen (impossible event).
+P(E) = 1 → The event will definitely happen (certain event).
+0 ≤ P(E) ≤ 1 → Probability is always between 0 and 1.
+If we have two events A and B, then:
+
+P(A) > P(B) means A is more likely to happen than B.
+Here’s the formula:
+
+P(E) = n(E) / n(S) → Number of outcomes for event E ÷ Total outcomes in the sample space.
+For the event not happening (called E’):
+
+P(E’) = [n(S) − n(E)] / n(S) = 1 − P(E)
+This means:
+
+P(E) + P(E’) = 1 → The probability of something happening and not happening always adds up to 1.
+Types of Probability
+There are three important classes of probabilities:
+Theoretical Probability
+Experimental Probability
+Axiomatic Probability
+
+
+Theoretical Probability
+Theoretical Probability is based on the potential chances of something happening. The type of probability is principally based on the logic behind probability. For example, if a coin is tossed, the theoretical probability of getting a head or a tail will be ½ or o.5.
+
+Experimental Probability
+This type of probability is based on the observations of an experiment. The experimental probability can be determined based on the number of potential outcomes by the cumulative/total number of trials. For instance, if a coin is tossed 8 times and the head is recorded 4 times then, the experimental probability for heads is 4/8 or 1/2.
+
+Axiomatic Probability
+In axiomatic probability, a set of commands or assumptions are set which fits all types. These axioms are set by Kolmogorov and are called Kolmogorov’s three axioms. With the axiomatic method of probability, the chances of existence or non-existence of the events can be quantified.
+
+Complementary Events
+The possibility that there will be simply two outcomes that state that an event will occur or will not occur. For example, a person will visit or not visit your residence, getting a government job or not receiving a job, etc. are examples of complementary events. The complement of an event occurring is exactly the reverse of the probability of it not occurring. Some more additional examples are:
+
+It will rain or not rain tomorrow.
+The trainee will pass the examination or not pass.
+You win the quiz or you won’t win.
+
+
+Probability Density Function
+The Probability Density Function (PDF) is the probability function that is outlined for the density of a continuous random variable existing within a certain range of values. The PDF explains the normal distribution and how mean and deviation exist. The standard normal distribution is applied to build a database of statistics, which are frequently used in science to describe the real-valued variables, whose distribution is not identified.
+
+Probability Formulas
+In probability examples, one thing that helps a lot are the formulas and theorem as probability sometimes gets a little confusing, so next will look at the formulas;
+
+P(A ∪ B) = P(A) + P(B) – P(A ∩ B).
+If A and B are mutually exclusive events i.e A ∩ B = ϕ, then P(A ∪ B) = P(A) + P(B).
+If A, B, and C are any three events then the formula for addition is given by;
+P(A ∪ B ∪ C) = P(A) + P(B) + P(C) – P(A ∩ B) – P(B ∩ C) – P(A ∩ C) + P(A ∩ B ∩ C)
+If A, B, and C are any three events such that they are mutually exclusive then;
+P(A ∪ B ∪ C) = P(A) + P(B) + P(C)
+
+
+Conditional Probability
+Let A and B be any two events correlated with a random experiment. Then, the probability of occurrence of an event A with the condition that B has already occurred such that the probability of B is not equal to zero (P(B) ≠ 0), is called the conditional probability and denoted by P(A|B).
+
+P(A|B) = P(A ∩ B) / P(B)
+Similarly, P(B|A) = P(A ∩ B) / P(A), where P(A) ≠ 0
+
+Points to remember for Probability
+If A and B are any two events in a random experiment then;
+P(A ∩ B) = P(A | B) P(B), if P(B) ≠ 0.
+P(A ∩ B) = P(B | A) P(A), if P(A) ≠ 0.
+
+
+
+Coin Toss Probability
+When we toss a coin, there are two possible results — Head (H) or Tail (T). In cricket and other games, coin tosses are often used to make quick decisions, like who will bat or bowl first.
+
+Tossing One Coin
+Possible outcomes: 2 → {H, T}
+Probability of Head: P(H) = 1/2
+Probability of Tail: P(T) = 1/2
+Tossing Two Coins
+Possible outcomes: 4 → {(H,H), (H,T), (T,H), (T,T)}
+Probability of 2 Heads: P(2H) = 1/4
+Probability of 1 Head: P(1H) = 2/4 = 1/2
+Probability of 0 Heads: P(0H) = 1/4
+Tossing Three Coins
+Possible outcomes: 8 → {(H,H,H), (H,H,T), (H,T,H), (T,H,H), (T,T,H), (T,H,T), (H,T,T), (T,T,T)}
+P(0 Heads) = 1/8
+P(1 Head) = 3/8
+P(2 Heads) = 3/8
+P(3 Heads) = 1/8
+
+
+Dice Roll Probability
+Dice are used in many games. A single die has 6 faces numbered 1 to 6.
+
+Rolling One Die
+Sample space: {1, 2, 3, 4, 5, 6}
+P(Even number) = 3/6 = 1/2
+P(Odd number) = 3/6 = 1/2
+P(Prime number: 2, 3, 5) = 3/6 = 1/2
+Rolling Two Dice
+Total outcomes = 6 × 6 = 36
+P(Doublet: same number) = 6/36 = 1/6
+P(At least one die shows 3) = 11/36
+P(Sum is 7) = 6/36 = 1/6
+Formula for outcomes when rolling n dice = 6ⁿ
+
+Probability of Drawing Cards
+A deck has 52 cards in 4 suits: Clubs (♣), Diamonds (♦), Hearts (♥), Spades (♠).
+
+Each suit has 13 cards: Ace, 2–10, Jack, Queen, King.
+Black cards: Spades, Clubs (26 cards)
+Red cards: Hearts, Diamonds (26 cards)
+Face cards: Jack, Queen, King (12 cards)
+Examples:
+
+P(Black card) = 26/52 = 1/2
+P(Hearts) = 13/52 = 1/4
+P(Face card) = 12/52 = 3/13
+P(Card with number 4) = 4/52 = 1/13
+P(Red card with number 4) = 2/52 = 1/26
+
+Probability Tree Diagram
+A tree diagram is a simple picture that shows all the possible outcomes of an event and helps us find their probabilities. It’s called a “tree” because it starts from one point and then branches out, just like the branches of a tree.
+
+For example, when we toss a coin, there are two possible outcomes — Heads (H) or Tails (T). In a tree diagram, each branch represents one outcome, and we write its probability on that branch (like 0.5 for both heads and tails).
+
+An important rule to remember is:
+The probabilities of all branches coming from the same point will always add up to 1.
+For a coin toss: 0.5 (Heads) + 0.5 (Tails) = 1.
+
+Probability Theorems
+These theorems make it easier to understand how probability works and to solve problems related to it.
+
+Event and its Complement – The probability of an event happening plus the probability of it not happening is always 1.
+Formula: P(A) + P(A′) = 1
+Impossible Event – The probability of something that cannot happen is always 0.
+Formula: P(ϕ) = 0
+Sure Event – If something is certain to happen, its probability is 1.
+Formula: P(A) = 1
+Probability Range – The probability of any event will always be between 0 and 1.
+Formula: 0 ≤ P(A) ≤ 1
+Two Events (A and B) –
+For any two events: P(A ∪ B) = P(A) + P(B) − P(A ∩ B)
+If the events are mutually exclusive (cannot happen together): P(A ∪ B) = P(A) + P(B)
+
+
+Important Probability Theorem and Distributions
+Let us check out some of the important probability related theorems like the law of total probability, Bayes theorem, Binomial distribution and more in this section.
+
+Law of Total Probability
+Consider E1, E2, ….., En is n mutually exclusive and exhaustive events associated with a random experiment. If A is an event that occurs with E1 or E2 or … or En, then
+P(A) = ∑(i=1 to n) P(Ei) × P(A | Ei)
+
+i.e. P(A) = P(E1) × P(A | E1) + P(E2) × P(A | E2) + … + P(En) × P(A | En)
+
+
+Baye’s Theorem
+
+Consider E1, E2, ….., En is n mutually exclusive and exhaustive events associated with a random experiment and let S be the sample space. Let A be an event that occurs together with any one of E1 or E2 or … or En such that P(A) ≠ 0. Then
+P(Ei | A) = [P(Ei) × P(A | Ei)] / [∑(i=1 to n) P(Ei) × P(A | Ei)], i = 1, 2, …… , n
+
+Binomial Distribution
+ If the probability of success of an event in a particular trial is p and that of the probability of failure is q = 1 – p, then the probability of exactly x successful events in n independent experiments is given by:
+P(x : n, p) = nCx × p^x × q^(n−x), where x = 1, 2, ….. , n
+
+Mean and Variance of Binomial Distribution
+
+The mean and variance of a binomial distribution B(n, p) is given by:
+Mean: X̅ = E(x) = np
+
+Variance: Var(x) = npq
+
+Standard Deviation = √(Var(x)) = √(npq)
+
+
+Some Concept of Mean, Median, and Mode
+Mean is defined as the average value/expected value. Median is the central part of the data /observation after the arrangement. The mode is related to the highest occurred part in the provided observation. The relationship between mean, median, and mode is given by,
+Mode = 3 Median – 2 Mean.
+
+Important Points about Probability
+Probability tells us how likely it is for something to happen.
+It is written as a fraction or decimal, and its value is always between 0 and 1.
+An event is simply a part of the sample space (all possible outcomes).
+Example: When you toss a coin, the sample space is {Head, Tail}. When you roll a die, the sample space is {1, 2, 3, 4, 5, 6}.
+In a random experiment, we cannot say exactly what will happen, but we can guess the chances of different possible outcomes.
+
+
+Probability Solved Problems
+Learn more about probability with solved probability examples:
+
+Example 1: Two dice are thrown simultaneously. Find the probability that the total of the numbers appearing on them is a prime number?
+
+Solution: The sample space for the two dice thrown simultaneously is :
+
+S = {(a, b)} {where a = 1, 2, ….., 6 and b = 1, 2, ……, 6}
+
+⇒ n (S) = 36
+
+Let A be a subset of S defined as A = {(a, b) | a + b is a prime no.
+
+A = {(1, 1), (1, 2), (1, 4), (1, 6), (2, 1), (2, 3), (2, 5), (3, 2), (3, 4), (4, 1), (4, 3), (5, 2), (5, 6), (6, 1), (6, 5)}
+
+⇒ n (A) = 15
+
+As we know that,
+
+P(A) = n(A) / n(S)
+P(A) = n(A) / n(S) = 15 / 36 = 5 / 12
+
+
+Example 2: If a fair die is rolled 4 times, then find the probability of exactly 2 sixes?
+
+Solution: Given, a fair die is rolled 4 times.
+
+Let p represent the probability of getting 6 = 1 / 6
+
+and q represent the probability of not getting 6, that is = 1 – (1 / 6) = 5 / 6
+
+As we know that, according to binomial distribution:
+
+P(x : n, p) = nCx × p^x × q^(n−x), where x = 1, 2, ….., n
+
+Here we get, n = 4, x = 2, p = 1 / 6 and q = 5 / 6.
+
+Hence the probability of getting exactly 2 sixes when a fair die is rolled 4 times is given by;
+
+b(x : n, p) = 4C2 × (1 / 6)^2 × (5 / 6)^2 = 25 / 216
+
+
+Example 3: In how many ways can the letters of the word PROBABILITY be arranged so that no two vowels are together?
+
+Solution:
+
+Concept:
+
+The number of ways in which r objects can be arranged in n places is nPr = n! / (n−r)!.
+
+The number of ways in which n objects, out of which p, q, r etc. are of the same type, can be arranged is: n! / (p! q! r! …).
+
+The number of ways in which r distinct objects can be selected from a group of n distinct objects is nCr = n! / [r! (n−r)!].
+
+n! = 1 × 2 × 3 × … × n
+
+0! = 1
+
+If some objects cannot be together, then first arrange the remaining objects, and then arrange the objects which cannot be together in the empty spaces between them.
+
+Calculation:
+
+The word PROBABILITY has 11 letters out of which 4 (O, A, I, I) are vowels and 7 (P, R, B, B, L, T, Y) are consonants.
+
+Since no two vowels can be together, we will first arrange the remaining 7 consonants.
+
+The consonants can be arranged in 7! / 2! = 2520 ways.
+
+Now, the 4 vowels can be arranged in any of the 8 spaces between the consonants, as illustrated by a _ below:
+
+_ P _ R _ B _ B _ L _ T _ Y _.
+
+Number of ways of selecting some 4 places out of the 8 places = 8C4 = 8! / [4! (8−4)!] = 70.
+
+Number of ways in which the 4 vowels can be arranged in these 4 places = 4! / 2! = 12.
+
+∴ The total number of possible arrangements = 2520 × 70 × 12 = 21,16,800.
+
+
+Example 4: A bag contains 3 red and 2 yellow marbles. A marble is drawn at random. What is the probability of drawing a red marble?
+
+Solution:
+
+There are a total of 5 marbles in the bag.
+
+The total number of ways of selecting one marble out = 5C1 = 5 ways.
+
+Let E be the event of selecting a red marble.
+
+Since the bag contains 3 red marbles,
+
+∴ one red marble can be drawn from 3 red = 3C1 = 3 ways.
+
+∴ P(E) = n(E) / n(S) = 3 / 5
