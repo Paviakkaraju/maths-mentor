@@ -21,6 +21,6 @@ for filename in files:
     metadata = [{"source": filename, "index": i} for i in range(len(chunks))]
 
     # store chunks
-    store_documents(chunks, metadata=metadata)
+    store_documents(chunks, metadata=metadata, collection_name="maths_docs")
 
     print(f"Indexed {filename} -> {len(chunks)} chunks")

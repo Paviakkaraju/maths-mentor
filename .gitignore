@@ -1,2 +1,4 @@
 venv/
 .env
+deterministic_parser_agent.py
+test_deterministic_parser.py
