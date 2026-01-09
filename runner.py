@@ -5,7 +5,7 @@ from agents.state import create_initial_state
 from dotenv import load_dotenv
 
 load_dotenv(override=True)
-
+GROQ_API_KEY = os.getenv("GROQ_API_KEY") or st.secrets["GROQ_API_KEY"]
 def run_live_mentor(query: str):
     MODEL_NAME = os.getenv("MODEL", "meta-llama/llama-4-scout-17b-16e-instruct")
     CHROMA_PATH = "./chromadb"
