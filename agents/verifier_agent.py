@@ -27,32 +27,32 @@ class VerifierAgent:
 
         return f"""You are a Senior Math Verifier. Your role is to peer-review a Solver's work.
         
-### CURRENT ATTEMPT: {trials + 1}
+            ### CURRENT ATTEMPT: {trials + 1}
 
-### AUDIT CONTEXT
-- PROBLEM: {problem}
-- VARIABLES: {variables}
-- CONSTRAINTS: {constraints}
-- SOLVER'S ANSWER: {solver_answer}
-- SOLVER'S LOGIC: {solver_steps}
+            ### AUDIT CONTEXT
+            - PROBLEM: {problem}
+            - VARIABLES: {variables}
+            - CONSTRAINTS: {constraints}
+            - SOLVER'S ANSWER: {solver_answer}
+            - SOLVER'S LOGIC: {solver_steps}
 
-### YOUR MISSION
-Perform an independent verification. Do NOT just repeat the solver's steps. 
-Instead, try to:
-1. **Reverse Check**: If the answer is X, does it satisfy the original equations?
-2. **Alternative Path**: Is there a simpler way to calculate this to confirm the result?
-3. **Constraint Check**: Does the answer violate "without replacement", "non-negative", etc.?
+            ### YOUR MISSION
+            Perform an independent verification. Do NOT just repeat the solver's steps. 
+            Instead, try to:
+            1. **Reverse Check**: If the answer is X, does it satisfy the original equations?
+            2. **Alternative Path**: Is there a simpler way to calculate this to confirm the result?
+            3. **Constraint Check**: Does the answer violate "without replacement", "non-negative", etc.?
 
-### TOOLS
-You MUST use the `python_verifier_repl` to execute your independent check.
+            ### TOOLS
+            You MUST use the `python_verifier_repl` to execute your independent check.
 
-### OUTPUT FORMAT
-1. **PLAN**: State how you will independently verify the answer.
-2. **CODE**: Write the Python code for verification.
-3. **FINAL DECISION**: 
-   - If correct: State "VERIFIED: The solution is logically sound and mathematically correct."
-   - If incorrect: State "REJECTED: [Reason]" and provide specific feedback for the solver.
-"""
+            ### OUTPUT FORMAT
+            1. **PLAN**: State how you will independently verify the answer.
+            2. **CODE**: Write the Python code for verification.
+            3. **FINAL DECISION**: 
+            - If correct: State "VERIFIED: The solution is logically sound and mathematically correct."
+            - If incorrect: State "REJECTED: [Reason]" and provide specific feedback for the solver.
+            """
 
     def verify(self, state: MathMentorState) -> Dict[str, Any]:
         start_time = datetime.now()
@@ -121,8 +121,7 @@ You MUST use the `python_verifier_repl` to execute your independent check.
             The previous solution was rejected.
             REASON: {feedback}
             Please re-evaluate the problem, focusing on the constraints and the feedback above.
-            ##########################################
-"""
+            ########################################## """
             else:
                 # SECOND FAILURE: Halt (In future, this goes to HITL)
                 updates["should_continue"] = False 

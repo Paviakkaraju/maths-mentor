@@ -6,13 +6,12 @@ from langchain_groq import ChatGroq
 from langchain_core.messages import HumanMessage
 from .state import MathMentorState
 
-# --- Optimized Output Schema ---
+# Parser Output Schema 
 class ParserOutput(BaseModel):
     """The final structured output from the Parser Agent."""
     intent: Literal["math_problem", "chitchat", "out_of_context"]
     confidence: float
-    
-    # Use 'unknown' as the mandatory fallback for non-math topics
+
     topic: Literal["probability", "algebra", "calculus", "linear_algebra", "unknown"] = Field(
         default="unknown"
     )
@@ -42,27 +41,37 @@ class ParserAgent:
 
         prompt = f"""You are an expert Math Parser for a JEE-level tutoring system.
         
-        USER INPUT: "{raw_input}"
+USER INPUT: "{raw_input}"
 
-        TASK:
-        1. Classify Intent: Is this a math_problem, chitchat, or out_of_context?
-        2. Parse: If it's a math problem, extract topic, variables, and semantic constraints (e.g., 'without replacement').
-        3. Validate: Is the problem solvable? (e.g., 'Find x' without an equation is invalid).
-        4.If NOT math_problem: 
-            - Set topic to "unknown"
-            - Set variables and constraints to []
-            - Provide a friendly 'direct_response' that you can only resolve queries related Math Problems 
-            and especially in probability, algebra, calculus, linear_algebra.
+TASK:
+1. Classify Intent: Is this a math_problem, chitchat, or out_of_context?
+   - "math_problem": ANY query related to math. This includes numerical problems (e.g., "Solve x+2=5") AND conceptual/theoretical questions (e.g., "Explain Bayes' Theorem", "What is a derivative?", "Give me the formula for variance").
+   - "chitchat": Greetings (Hi, Hello), pleasantries (How are you?), or thanks.
+   - "out_of_context": Any topic not related to mathematics (e.g., weather, sports, history).
 
-        GUIDELINES:
-        - Preserve LaTeX notation ($x^2$).
-        - For probability, look specifically for sampling constraints.
+2. Parse: If it's a math_problem, extract:
+   - topic: The mathematical category.
+   - variables: List of symbols ($x$, $y$, $P(A)$). For conceptual questions, this may be empty.
+   - constraints: Semantic rules (e.g., "without replacement").
 
-        CRITICAL:
-        - 'topic' MUST be one of: "probability", "algebra", "calculus", "linear_algebra", or "unknown". 
-        - Do NOT leave 'topic' as an empty string. If it is not math, use "unknown".
-        - 'confidence' must be a JSON number (e.g. 0.9), not a string.
-        """
+3. Validate: 
+   - A numerical problem is 'valid' if it has enough data to solve.
+   - A conceptual question (e.g., "Explain X") is ALWAYS 'valid' as long as the topic is math.
+
+4. If NOT math_problem: 
+   - Set topic to "unknown", variables/constraints to [].
+   - Provide a friendly 'direct_response' stating: "I am a specialized Math Mentor. I can only resolve queries related to Math Problems and concepts, especially in the areas of Probability, Algebra, Calculus, and Linear Algebra. How can I help you with math today?"
+
+GUIDELINES:
+- Preserve LaTeX notation ($x^2$).
+- For probability, look specifically for sampling constraints.
+- CONCEPTUAL RULE: If the user asks for any explanation or definition of a math concept, classify as 'math_problem'.
+
+CRITICAL:
+- 'topic' MUST be one of: "probability", "algebra", "calculus", "linear_algebra", or "unknown". 
+- Do NOT leave 'topic' as an empty string. If it is not math, use "unknown".
+- 'confidence' must be a JSON number (e.g. 0.95), not a string.
+"""
 
         try:
             # Single-pass execution

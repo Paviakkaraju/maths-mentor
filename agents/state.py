@@ -4,7 +4,7 @@ import operator
 
 class MathMentorState(TypedDict):
     """
-    Updated State Schema for ReAct Multi-Agent Math Mentor System.
+    Complete State Schema for the Multi-Agent System.
     """
     # Input
     session_id: str
@@ -12,7 +12,7 @@ class MathMentorState(TypedDict):
     input_mode: Literal["text", "image", "audio"]
     timestamp: str
     
-    # Parser Agent Outputs
+    # Parser Outputs
     intent: Optional[Literal["math_problem", "chitchat", "out_of_context"]]
     intent_confidence: float
     direct_response: Optional[str] 
@@ -24,24 +24,22 @@ class MathMentorState(TypedDict):
     parsing_valid: bool
     parsing_issues: List[str]
 
-    # Intent Router Outputs ---
+    # Intent Router & RAG Outputs
     workflow_type: Optional[Literal["conceptual", "computational", "ambiguous"]]
-    plan: List[str] # Sequential steps for the agents to follow
+    plan: List[str]
     rag_chunks: List[Dict] 
-
+    consolidated_knowledge: str # Holds the "Cheat Sheet" and Mentor Feedback
     similar_problems: List[Dict] 
     
-    # Solver Agent Outputs 
-    solution_steps: List[str]
-    final_answer: str
+    # Solver Outputs 
+    solution_steps: List[str] # Overwrites
+    final_answer: str        # Overwrites
     solver_reasoning: str  
-    calculations_performed: Annotated[List, operator.add]
-    solver_trace: Annotated[List, operator.add]
-    consolidated_knowledge: str  # The "Cheat Sheet" for the Solver or the raw material for the Explainer
+    calculations_performed: Annotated[List, operator.add] # Appends
     tools_used: List[str]  
     
-    # Verifier Agent Outputs
-    solver_trials: int  # 0 for first attempt, 1 for second attempt
+    # Verifier Outputs
+    solver_trials: int  # Overwrites (0:1st attempt, 1:2nd attempt)
     should_halt_for_hitl: bool
     is_correct: Optional[bool]  
     verification_confidence: float
@@ -51,15 +49,15 @@ class MathMentorState(TypedDict):
     math_steps_valid: bool
     verification_tools_used: List[str]
     
-    # Explainer Agent Outputs
+    # Explainer Outputs
     explanation: str  
     step_explanations: List[str]  
     key_concepts: List[str]
     analogies: List[str]
     
-    # Agent Reasoning Traces
+    # Agent Reasoning Traces (All Append)
     parser_trace: Annotated[List[Dict], operator.add]
-    router_trace: Annotated[List[Dict], operator.add] # NEW
+    router_trace: Annotated[List[Dict], operator.add]
     rag_trace: Annotated[List[Dict], operator.add]  
     solver_trace: Annotated[List[Dict], operator.add]
     verifier_trace: Annotated[List[Dict], operator.add]
@@ -75,12 +73,16 @@ def create_initial_state(
     session_id: str,
     input_mode: Literal["text", "image", "audio"] = "text"
 ) -> MathMentorState:
+    """
+    Initializes the state with safe defaults to prevent KeyErrors.
+    """
     return MathMentorState(
         session_id=session_id,
         raw_input=user_input,
         input_mode=input_mode,
         timestamp=datetime.now().isoformat(),
         
+        # Parser
         intent=None,
         intent_confidence=0.0,
         direct_response=None,
@@ -91,19 +93,24 @@ def create_initial_state(
         constraints=[],
         parsing_valid=False,
         parsing_issues=[],
-
         
+        # Router & RAG
         workflow_type=None,
         plan=[],
-        
         rag_chunks=[],
+        consolidated_knowledge="", 
         similar_problems=[],
+        
+        # Solver
         solution_steps=[],
         final_answer="",
         solver_reasoning="",
         calculations_performed=[],
         tools_used=[],
         
+        # Verifier
+        solver_trials=0,
+        should_halt_for_hitl=False, 
         is_correct=None,
         verification_confidence=0.0,
         verification_notes="",
@@ -112,11 +119,13 @@ def create_initial_state(
         math_steps_valid=False,
         verification_tools_used=[],
         
+        # Explainer
         explanation="",
         step_explanations=[],
         key_concepts=[],
         analogies=[],
         
+        # Traces
         parser_trace=[],
         router_trace=[], 
         rag_trace=[],
@@ -124,6 +133,7 @@ def create_initial_state(
         verifier_trace=[],
         explainer_trace=[],
         
+        # Meta
         errors=[],
-        execution_time_ms=None
+        execution_time_ms=0.0
     )

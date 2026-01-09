@@ -40,68 +40,68 @@ class SolverAgent:
         
         return f"""You are a Deterministic Math Solver using Python.
 
-**PROBLEM**
-{problem}{var_text}{constraint_text}
+            **PROBLEM**
+            {problem}{var_text}{constraint_text}
 
-**CRITICAL: YOU MUST USE THE TOOL**
+            **CRITICAL: YOU MUST USE THE TOOL**
 
-You have access to python_solver tool. You MUST CALL IT to solve problems.
+            You have access to python_solver tool. You MUST CALL IT to solve problems.
 
-DO NOT:
- Write code in markdown blocks in your response
-Explain what code would look like
-Show example code without calling the tool
+            DO NOT:
+            Write code in markdown blocks in your response
+            Explain what code would look like
+            Show example code without calling the tool
 
-DO THIS:
-CALL the python_solver tool with your code
-Put code in the tool call arguments
-Wait for execution result
-Use result to form your answer
+            DO THIS:
+            CALL the python_solver tool with your code
+            Put code in the tool call arguments
+            Wait for execution result
+            Use result to form your answer
 
-**PRE-IMPORTED LIBRARIES** (DO NOT use import statements)
-- math: Standard functions
-- statistics: Statistical functions
-- sympy (as sp): Symbolic mathematics (use sp.Symbol, sp.solve, etc.)
-- numpy (as np): Numerical arrays
+            **PRE-IMPORTED LIBRARIES** (DO NOT use import statements)
+            - math: Standard functions
+            - statistics: Statistical functions
+            - sympy (as sp): Symbolic mathematics (use sp.Symbol, sp.solve, etc.)
+            - numpy (as np): Numerical arrays
 
-**RULES**
-1. Libraries are already imported - NO import statements
-2. Define symbols: x = sp.Symbol('x', real=True)
-3. Assign final answer to: result = your_answer
-4. Use deterministic methods only
+            **RULES**
+            1. Libraries are already imported - NO import statements
+            2. Define symbols: x = sp.Symbol('x', real=True)
+            3. Assign final answer to: result = your_answer
+            4. Use deterministic methods only
 
-**RESPONSE FORMAT**
+            **RESPONSE FORMAT**
 
-For each step:
-1. State your PLAN briefly
-2. CALL python_solver tool (don't write code in text!)
-3. Review the result
-4. Continue or provide final answer
+            For each step:
+            1. State your PLAN briefly
+            2. CALL python_solver tool (don't write code in text!)
+            3. Review the result
+            4. Continue or provide final answer
 
-**EXAMPLE OF CORRECT TOOL USAGE**
+            **EXAMPLE OF CORRECT TOOL USAGE**
 
-Problem: "Calculate 5!"
+            Problem: "Calculate 5!"
 
-You think: "I need to calculate factorial"
-You respond: "PLAN: Calculate factorial of 5"
-You CALL python_solver with code: "result = math.factorial(5)"
-Tool returns: "120"
-You respond: "The factorial of 5 is 120"
+            You think: "I need to calculate factorial"
+            You respond: "PLAN: Calculate factorial of 5"
+            You CALL python_solver with code: "result = math.factorial(5)"
+            Tool returns: "120"
+            You respond: "The factorial of 5 is 120"
 
-**EXAMPLE OF WRONG USAGE**
+            **EXAMPLE OF WRONG USAGE**
 
-Problem: "Calculate 5!"
-WRONG:
-"PLAN: Calculate factorial
-CODE: ```python
-result = math.factorial(5)
-```
-The answer is 120"
+            Problem: "Calculate 5!"
+            WRONG:
+            "PLAN: Calculate factorial
+            CODE: ```python
+            result = math.factorial(5)
+            ```
+            The answer is 120"
 
-This is WRONG because you didn't CALL the tool - you just wrote code in text!
-{knowledge_text}
+            This is WRONG because you didn't CALL the tool - you just wrote code in text!
+            {knowledge_text}
 
-Remember: CALL THE TOOL, don't describe the code!"""
+            Remember: CALL THE TOOL, don't describe the code!"""
 
     def solve(self, state: MathMentorState) -> Dict[str, Any]:
         """
@@ -153,20 +153,20 @@ Remember: CALL THE TOOL, don't describe the code!"""
             SystemMessage(content=self.get_system_prompt(state)),
             HumanMessage(content="""**CRITICAL INSTRUCTION**
 
-You MUST use the python_solver TOOL to solve this problem.
+                You MUST use the python_solver TOOL to solve this problem.
 
-DO NOT write code in your response text.
-DO NOT explain code without calling the tool.
-ACTUALLY CALL the python_solver tool with your code.
+                DO NOT write code in your response text.
+                DO NOT explain code without calling the tool.
+                ACTUALLY CALL the python_solver tool with your code.
 
-Process:
-1. Think: What's my approach? (state your PLAN)
-2. Action: CALL python_solver tool with code
-3. Observe: See the result
-4. If done: State final answer
-5. If not done: CALL python_solver again
+                Process:
+                1. Think: What's my approach? (state your PLAN)
+                2. Action: CALL python_solver tool with code
+                3. Observe: See the result
+                4. If done: State final answer
+                5. If not done: CALL python_solver again
 
-Start by CALLING the python_solver tool now.""")
+                Start by CALLING the python_solver tool now.""")
         ]
         
         # Tracking variables
@@ -202,11 +202,11 @@ Start by CALLING the python_solver tool now.""")
                         messages.append(HumanMessage(
                             content="""You did NOT call the python_solver tool. 
 
-I can see you wrote code or explanation in text, but you must CALL THE TOOL.
+                                    I can see you wrote code or explanation in text, but you must CALL THE TOOL.
 
-Click/invoke the python_solver tool and put your code in the arguments.
+                                    Click/invoke the python_solver tool and put your code in the arguments.
 
-CALL THE TOOL NOW - don't write code in text!"""
+                                    CALL THE TOOL NOW - don't write code in text!"""
                         ))
                         continue
                     else:
@@ -449,211 +449,3 @@ CALL THE TOOL NOW - don't write code in text!"""
             "avg_iterations": round(sum(iterations) / total, 2) if total > 0 else 0,
             "max_iterations_used": max(iterations) if iterations else 0
         }
-
-
-# Example usage
-if __name__ == "__main__":
-    from utils.llm import LLM
-    import os
-    from dotenv import load_dotenv
-    load_dotenv()
-    
-    # Initialize
-    solver = SolverAgent(LLM, max_iterations=5, verbose=True)
-    
-    # Test problem
-    state = {
-        'problem_text': 'A bag has 4 red and 6 black balls. Find the probability of drawing 2 red balls without replacement.',
-        'variables': [],
-        'constraints': ['without replacement'],
-        'consolidated_knowledge': """
-                The probability of an event 
-𝐸
-E is defined as
-
-𝑃
-(
-𝐸
-)
-=
-𝑛
-(
-𝐸
-)
-𝑛
-(
-𝑆
-)
-P(E)=
-n(S)
-n(E)
-	​
-
-,
-where 
-𝑛
-(
-𝐸
-)
-n(E) is the number of favourable outcomes and 
-𝑛
-(
-𝑆
-)
-n(S) is the total number of possible outcomes.
-
-The combination formula, which is used to count selections where order does not matter, is
-
-𝑛
-𝐶
-𝑟
-=
-𝑛
-!
-𝑟
-!
-(
-𝑛
-−
-𝑟
-)
-!
-n
-C
-r
-	​
-
-=
-r!(n−r)!
-n!
-	​
-
-,
-where 
-𝑛
-!
-n! denotes the factorial of 
-𝑛
-n.
-
-For two events 
-𝐴
-A and 
-𝐵
-B, the probability of their union is given by
-
-𝑃
-(
-𝐴
-∪
-𝐵
-)
-=
-𝑃
-(
-𝐴
-)
-+
-𝑃
-(
-𝐵
-)
-−
-𝑃
-(
-𝐴
-∩
-𝐵
-)
-P(A∪B)=P(A)+P(B)−P(A∩B).
-If the events 
-𝐴
-A and 
-𝐵
-B are mutually exclusive, then the formula simplifies to
-
-𝑃
-(
-𝐴
-∪
-𝐵
-)
-=
-𝑃
-(
-𝐴
-)
-+
-𝑃
-(
-𝐵
-)
-P(A∪B)=P(A)+P(B).
-
-When drawing objects such as balls or cards without replacement, if there are 
-𝑛
-n objects in total and 
-𝑟
-r objects are drawn, the total number of possible outcomes is 
-𝑛
-𝐶
-𝑟
-n
-C
-r
-	​
-
-. If among the total 
-𝑛
-n objects, 
-𝑟
-r objects are of a particular type, the probability of drawing one object of that type in a single draw is 
-𝑟
-𝑛
-n
-r
-	​
-
-.
-
-In problems involving drawing cards or balls without replacement, such as selecting a specific combination of objects, the probability is calculated by finding the number of favourable combinations and dividing it by the total number of possible combinations using the formula 
-𝑃
-(
-𝐸
-)
-=
-𝑛
-(
-𝐸
-)
-𝑛
-(
-𝑆
-)
-P(E)=
-n(S)
-n(E)
-	​
-
-.
-
-When solving such problems, it is important to remember that without replacement, the total number of outcomes and the number of favourable outcomes change with each draw. Failing to update these values correctly leads to incorrect probability calculations.
-
-For example, if a bag contains 4 red balls and 6 black balls, the total number of balls is 10, and the number of red balls is 4. These facts, along with the formulas above, are sufficient to solve problems such as finding the probability of drawing 2 red balls without replacement.
-                                 """
-    }
-    
-    # Solve
-    result = solver.solve(state)
-    
-    # Print results
-    print("\n" + "="*60)
-    print("FINAL RESULT")
-    print("="*60)
-    print(f"Answer: {result['final_answer']}")
-    print(f"Time: {result['execution_time_ms']}ms")
-    print(f"Iterations: {result['iteration_count']}")
-    print(f"Success: {result['success']}")
-    print("\nTrace:")
-    for i, entry in enumerate(result['solver_trace']):
-        print(f"\n{i+1}. {entry}")

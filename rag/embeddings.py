@@ -1,7 +1,28 @@
-from langchain_huggingface import HuggingFaceEmbeddings
+# from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_chroma import Chroma
 
-import torch # Add this import
+# import torch # Add this import
+# from langchain_huggingface import HuggingFaceEmbeddings
+
+# # Global variable to cache the model
+# _embeddings_instance = None
+
+# def get_embeddings():
+#     global _embeddings_instance
+#     if _embeddings_instance is None:
+#         print(" Loading Embedding Model into RAM...")
+#         # Force the model to load on CPU and bypass the 'meta' device issue
+#         model_kwargs = {'device': 'cpu'} 
+#         encode_kwargs = {'normalize_embeddings': True}
+        
+#         _embeddings_instance = HuggingFaceEmbeddings(
+#             model_name="sentence-transformers/all-mpnet-base-v2",
+#             model_kwargs=model_kwargs,
+#             encode_kwargs=encode_kwargs
+#         )
+#     return _embeddings_instance
+
+import torch
 from langchain_huggingface import HuggingFaceEmbeddings
 
 # Global variable to cache the model
@@ -10,16 +31,26 @@ _embeddings_instance = None
 def get_embeddings():
     global _embeddings_instance
     if _embeddings_instance is None:
-        print(" Loading Embedding Model into RAM...")
-        # Force the model to load on CPU and bypass the 'meta' device issue
-        model_kwargs = {'device': 'cpu'} 
+        # Determine the best available device
+        if torch.cuda.is_available():
+            device = 'cuda'
+        elif torch.backends.mps.is_available():
+            device = 'mps' # For Mac M1/M2/M3
+        else:
+            device = 'cpu'
+            
+        # print(f"🚀 Initializing Embedding Model on {device.upper()}...")
+        
+        model_kwargs = {'device': device} 
         encode_kwargs = {'normalize_embeddings': True}
         
+        # Load the model once
         _embeddings_instance = HuggingFaceEmbeddings(
             model_name="sentence-transformers/all-mpnet-base-v2",
             model_kwargs=model_kwargs,
             encode_kwargs=encode_kwargs
         )
+        # print("Model loaded and cached.")
     return _embeddings_instance
 
 # def get_embeddings():
