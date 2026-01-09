@@ -1,0 +1,489 @@
+Algebra
+Algebra is a part of maths that uses letters, numbers, and symbols to show problems and find missing values. The main aim of algebra is to solve maths problems in an easy and clear way. 
+In algebra, we work with expressions, equations, and formulas. In algebra, we work with expressions, equations, and formulas. 
+For example, in x + 5 = 12, the letter x represents an unknown number. Algebra also includes concepts like polynomials, exponents, sequences, and inequalities. 
+
+
+What is Algebra?
+The word algebra comes from the Arabic word al-jabr. Algebra is a part of mathematics where we work with numbers and letters together. The numbers are called constants, and the letters are called variables. Variables stand for numbers that we do not know or that can change. 
+In algebra, we use simple rules like addition, subtraction, multiplication, and division to solve sums. Algebra helps us find unknown values and understand how numbers are connected. It also helps us solve real-life problems, such as saving money, measuring time, and planning work. Below, we will learn about different types of algebra questions step by step.
+
+
+History of Algebra
+Algebra is a branch of Mathematics that dates back centuries, to the Middle East. It was invented by a famous mathematician, astronomer, and geographer Abu Ja’far Muhammad ibn Musa al-Khwarizmi who was born about 780 in Baghdad. His book on Algebra is known as The Compendious Book on Calculation by Completion and Balancing. His book was translated into several languages and became very popular in the west.
+
+Algebra uses letters and numbers. Algebra tends to find the unknown by putting the real-life variables into equations and then solving them by using various formulas or equations. Some of the sub-topics under Algebra are real numbers, complex numbers, matrices, vectors and so on.
+
+
+Types of Questions from Algebra
+Let us see different types of questions that may come in the Algebra section one by one from below.
+
+1. Algebraic Expressions
+The combination of constants, variables and elementary arithmetic operations (+, -, ×, ÷) is called algebraic expression.
+
+Example: 3x+5y,4x3−5y13,5x–6y+7z÷8y13
+ etc.
+
+Algebraic Expressions can be further divided into two main categories. The types of algebraic expressions are as follows:
+
+(a) On the basis of number of terms
+These are the following types of algebraic expressions on the basis of number of terms:
+
+(i) Monomial
+The algebraic expression that consists of only one term is called a monomial
+Example: 4x, 4y3, −6.33z etc.
+
+
+(ii) Binomial
+The algebraic expression that consists of two terms is called binomial.
+
+Example: 2x+3y,4x+x2
+ etc.
+
+
+(iii) Trinomial
+The algebraic expression that consists of three terms is called trinomial.
+
+Example: 4xy+3x+5y2
+
+
+(iv) Polynomial
+The algebraic expression that consists of two or more than two terms is called a polynomial.
+
+The general form of polynomial is given by P(x) = a0+a1x+a2x2+…+anxn
+
+Where, a0,a1,a2,a3…andan
+, are real numbers and n is a whole number (non-negative integer).
+
+Example: 1+2x–3x2+5x4,6x3–2x2+4 etc.
+
+
+(b) On the basis of degree of a polynomial
+
+(i) Linear Polynomial
+The polynomial in which the highest power of the variables is one or the polynomial of degree 1 is called linear polynomial.
+Example: 2x + 3
+
+(ii) Quadratic Polynomial
+The polynomial of degree two is called a quadratic polynomial.
+Example: x2–4x+5,x2–5 etc.
+
+(iii) Cubic Polynomial
+The polynomial of degree three is called a cubic polynomial.
+Example: x3+4x2–3x+4,x3–4x–3 etc.
+
+(iv) Quartic Polynomial
+The polynomial of degree four is called the quartic equation.
+Example: 5x4–4x+2,5x4+4x3–3x etc.
+
+
+2. Equations
+When we equate an expression or polynomial with a number, then the resultant is called an equation.
+
+There are following types of equations:
+(a) Linear Equation in One Variable
+The equation having only one variable with highest power 1 is called a linear equation in one variable.
+
+The general form of linear equation in one variable is ax + b = 0, where a and b are real constants and a ≠ 0
+
+Example: 23+x=30
+
+(b) Linear Equation in Two Variables
+The equation having two variables with the highest power of the variable 1 is called linear equation in two variables.
+
+The general form of the linear equation in two variables is given by ax + by + c = 0, where a, b and c are real numbers and (a, b) ≠ (0, 0).
+
+Example: 12x+23y=30
+
+(c) Quadratic Equation
+An equation of the form ax2+bx+c=0 is called a quadratic equation.
+
+The standard form of the quadratic equation is ax2+bx+c=0, where a, b and c are real numbers and a ≠ 0
+
+Example: 4x2+2x+1=0,5x2–2x+4=0 etc.
+
+(d) Cubic Equation
+An equation of the form ax3+bx2+cx+d=0 is called a cubic equation. Where a, b, c, and d are real constants and a ≠ 0.
+
+
+Some Important Basic Algebra Formulas
+(a+b)2=a2+2ab+b2
+(a–b)2=a2–2ab+b2
+(a+b)2=(a–b)2+4ab
+(a–b)2=(a+b)2–4ab
+a2+b2=(a+b)2–2ab
+a2+b2=(a–b)2+2ab
+a2–b2=(a+b)(a–b)
+a3+b3=(a+b)(a2–ab+b2)
+a3–b3=(a–b)(a2+ab+b2)
+(a+b)3=a3+b3+3ab(a+b)
+(a–b)3=a3–b3–3ab(a–b)
+a3+b3=(a+b)3–3ab(a+b)
+a3–b3=(a–b)3+3ab(a–b)
+(a+b+c)2=a2+b2+c2+2ab+2bc+2ca
+a3+b3+c3–3abc=(a+b+c)(a2+b2+c2–ab–bc–ac)=½(a+b+c)[(a–b)2+(b–c)2+(c–a)2]
+a3+b3+c3=3abcIf(a+b+c)=0
+(a+b+c)3=a3+b3+c3+3(a+b)(b+c)(c+a)
+a4+b4+a2b2=(a2–ab+b2)(a2+ab+b2)
+If x2+y2+z2=0,thenx=y=z=0
+If a3+b3+c3=3abcThen(a+b+c)=0
+If xy = 1, then 1/(x+1) + 1/(y+1) = 1
+
+
+
+Algebraic Expressions
+An algebraic expression is made of numbers (constants), letters (variables), and mathematical operations. For example: 5x + 6
+Here, 5 and 6 are constants, and x is a variable.
+
+Variables can be simple, like x, y, z, or more complex, like x², x³, xy, x²y, etc.
+
+Polynomials are a type of algebraic expression consisting of variables, coefficients, and non-negative integer exponents. For example: 5x³ + 4x² + 7x + 2 = 0
+
+Equations
+An equation is a statement that two algebraic expressions are equal, written with an equal sign (=).
+
+Types of Equations:
+
+Linear Equations:
+Variables have the power of 1. Example: 2x + 3 = 7
+Used to find simple relationships between variables.
+Quadratic Equations:
+Variables have the power of 2. Standard form: ax² + bx + c = 0
+Has at most two solutions.
+Cubic Equations:
+Variables have the power of 3. Standard form: ax³ + bx² + cx + d = 0
+Used in 3D geometry and calculus.
+
+Sequence and Series
+A sequence is a list of numbers following a pattern. A series is the sum of numbers in a sequence.
+
+Arithmetic Progression (AP):
+The difference between consecutive terms is constant. Example: a, a + d, a + 2d, …
+Geometric Progression (GP):
+The ratio between consecutive terms is constant. Example: a, ar, ar², …
+Sequences and series can be finite or infinite.
+
+Exponents
+An exponent shows how many times a number (base) is multiplied by itself.
+Example: aⁿ = a × a × a … (n times)
+
+Exponents simplify algebraic expressions and include:
+Squares (a²)
+Cubes (a³)
+Square roots (√a)
+Cube roots (³√a)
+
+
+Logarithms
+A logarithm is the reverse of an exponent. It helps simplify large numbers.
+
+Exponential form: aˣ = n
+Logarithmic form: logₐ n = x
+
+John Napier introduced logarithms in 1614. They are widely used in modern mathematics.
+
+Sets
+A set is a collection of well-defined objects. Sets are used to represent numbers, variables, or other objects in algebra.
+Examples:
+Set of even numbers: A = {2, 4, 6, 8}
+Set of vowels: B = {a, e, i, o, u}
+
+
+Algebraic Operations
+In algebra, we use four basic operations. These operations help us work with numbers and letters in equations.
+
+Addition
+Addition means finding the total. In algebra, we add two or more numbers or expressions using the plus (+) sign.
+Example: a + b, 5 + x
+
+Subtraction
+Subtraction means taking one value away from another. In algebra, we use the minus (−) sign to show subtraction between expressions.
+Example: a − b, x − 3
+
+Multiplication
+Multiplication means repeated addition. In algebra, multiplication is shown using a cross (×), a dot (·), or sometimes just by writing the terms together.
+Example: a × b, 3x, 2 · y
+
+Division
+Division means sharing or splitting into equal parts. In algebra, division is shown using the division sign (÷) or a slash (/).
+Example: a ÷ b, x / 4
+
+
+Properties of Algebra
+Algebra is a branch of mathematics that deals with numbers, variables, and symbols to solve problems and represent relationships. To work with algebra correctly, it is important to understand its basic properties. These properties make calculations easier and help us solve equations and expressions efficiently.
+
+1. Commutative Property
+The commutative property states that the order of numbers does not change the result in addition or multiplication.
+
+Addition: a + b = b + a
+Multiplication: a × b = b × a
+Example: 5 + 3 = 3 + 5 → both equal 8
+4 × 2 = 2 × 4 → both equal 8
+
+2. Associative Property
+The associative property states that the grouping of numbers does not change the result in addition or multiplication.
+
+Addition: (a + b) + c = a + (b + c)
+Multiplication: (a × b) × c = a × (b × c)
+Example: (2 + 3) + 4 = 2 + (3 + 4) → both equal 9
+(2 × 3) × 4 = 2 × (3 × 4) → both equal 24
+
+3. Distributive Property
+The distributive property connects multiplication and addition/subtraction. It allows you to multiply a number by a sum or difference inside brackets.
+
+a × (b + c) = a × b + a × c
+a × (b − c) = a × b − a × c
+Example: 3 × (4 + 5) = 3 × 4 + 3 × 5 → 27 = 12 + 15 → 27
+
+4. Identity Property
+The identity property states that certain numbers do not change the value of another number when added or multiplied.
+
+Addition: a + 0 = a → 0 is the additive identity
+Multiplication: a × 1 = a → 1 is the multiplicative identity
+Example: 7 + 0 = 7, 9 × 1 = 9
+
+5. Inverse Property
+The inverse property states that each number has an opposite that brings the result back to the identity number.
+
+Additive Inverse: a + (−a) = 0
+Multiplicative Inverse: a × (1/a) = 1 (a ≠ 0)
+Example: 5 + (−5) = 0, 4 × (1/4) = 1
+
+6. Closure Property
+The closure property states that performing an operation on two numbers in a set gives a result that also belongs to the same set.
+
+Addition: a + b belongs to the set of real numbers
+Multiplication: a × b belongs to the set of real numbers
+Example: 3 + 7 = 10, 5 × 2 = 10 → result is in the set of numbers
+
+7. Zero Property of Multiplication
+Any number multiplied by zero is always zero.
+
+a × 0 = 0
+Example: 7 × 0 = 0, −5 × 0 = 0
+
+
+Uses of Algebra in Real life
+Algebra is used in various fields such as DBMS (Database Management System), Medicine, Architecture and Accounting. Algebra can also be used for everyday problem-solving and developing critical thinking such as logic, patterns, and deductive and inductive reasoning or understanding the core concepts of algebra can prove to be beneficial to everyone to solve the complex problems which involve numbers.
+It plays a major role in solving various problems in the workplace where real-life scenarios of unknown variables involve expenses and profits calculation related to employees. Algebraic equations can be used to determine the missing factors in these scenarios.
+
+
+
+How to Solve Algebra Questions – Tips and Tricks
+Candidates can find different tips and tricks below for solving the questions related to Algebra.
+
+Tip # 1: Definition of Coefficient – The number or the fixed value multiplied to the variable in a term of an algebraic expression is called the coefficient of the term.
+
+Example: In polynomial 4x3+5x2–7x–2
+, the coefficient of x3
+ is 4, coefficient of x2\(
+ is 5, coefficient of x is -7 and the constant term is -2.
+
+Tip # 2: Definition of Degree of Polynomial – The highest power of the variables in a polynomial is called the degree of polynomial.
+
+Example: The degree of polynomial 4x^3 + 5x^2 – 7x – 2\) is 3, the degree of polynomial 1+2x–3x2+5x4
+ is 4.
+
+Tip # 3: Zeros of Polynomials – Those value(s) of x(variable) which satisfy the polynomial is/ are called the zero/zeros of the polynomial.
+
+Example: since x = 2 satisfies the polynomial x2–5x+6
+, so we can say that x = 2 is a zero of polynomials.
+
+Tip # 4: Remainder Theorem – When P(x) is divided by (x – a), then the remainder will be P(a).
+
+Example: when P(x) = x2−3x+6
+ is divided by (x – 2), then remainder will be P(2)
+
+⇒ P(2) = 22 – 3 × 2 + 6 = 4
+
+Tip # 5: Factor Theorem – If (x – a) is a factor of P(x), then remainder will be zero i.e. P(x) = 0
+
+Example: Find the value of k if x – 2 is a factor of x2–kx+6
+
+Solution: according to question P(2) = 0 ⇒ 22 – k × 2 + 6 = 0
+
+Hence, k = 5
+
+Tip # 6: The value of the variables that satisfies the equation is called the solution of the equation. The graph of the linear equation ax + by + c = 0 is a straight line.
+
+Example: since, x = 2 and y = 1 satisfy the linear equation in two variables x – 4y + 2 = 0, so we can say that x = 2 and y = 1 is a solution of the above equation.
+
+Tip # 7: A system of a pair of linear equations in two variables is said to be consistent if it has at least one solution. A system of a pair of linear equations in two variables is said to be inconsistent if it has no solution.
+
+Tip # 8: The system of a pair of linear equations a1x+b1y+c1=0
+ and a2x+b2y+c2=0
+ has:
+
+A unique solution (i.e. consistent) if: a1a2
+ is not equals to b1b2
+
+In this case the graphs of the pair of linear equations intersect at only one point and the coordinate of points is the solution of the pair of linear equations.
+
+No solution (i.e. inconsistent) if:
+
+a1a2
+ is equals to b1b2
+ not equals to c1c2
+
+In this case the graphs of the linear equations are parallel to each other, that is the lines do not intersect each other.
+
+III. An infinite number of solution (i.e. consistent) if:
+
+a1a2
+ is equals to b1b2
+ is also equals to c1c2
+
+In this case the graphs of the linear equations coincide with each other, that is the lines overlap each other.
+Tip # 9: Root of Equation – The value(s) of x which satisfy the equation is/are called the root of the equation.
+
+Maximum number of real roots of a linear, quadratic, cubic and a quartic equation are 1, 2, 3 and 4 respectively.
+
+Example: x = 3, satisfy the equation x2–6x+9=0
+, so we can say that x = 3 is a root of the equation.
+
+Tip # 10: To solve a quadratic equation by the help of the quadratic formula method, we first need to find the discriminant (D), where, D=b2–4ac
+.
+
+If D > 0, then the roots of the quadratic equation are real and distinct.
+If D = 0, the roots of the quadratic equation are real and equal.
+If D < 0, the roots of the quadratic equation are imaginary.
+Tip # 11: Usually we denote the roots of quadratic equations by α and β, where α + β = −ba
+and α × β = ca
+
+Tip # 12: If it is given that α and β are the roots of the quadratic equation, then we can find the quadratic equation by the help of the formula x2–(α+β)x+αβ=0
+
+Example: if x = 3 and x = 4 are the roots of a quadratic equation then we can find the equation by taking α = 2 and β = 4.
+
+α + β = 7, α.β = 3 × 4 = 12
+
+So, the required quadratic equation is x2 – 7x + 12 = 0
+
+Tip # 13: If α, β and δ are the roots of equation ax3 + bx2 + cx + d = 0, then α + β + δ = -b/a, αβ + βδ + δα = c/a and αβδ = -d/a
+
+Tip # 14: If α, β and δ are the roots of a cubic equation, then we can find the equation by using the formula x3 – (α + β + δ)x2 + (αβ + βδ + δα)x – αβδ = 0
+
+Tip # 15: We can find the roots of quadratic equations by the help of factorization method, and quadratic formula method.
+
+
+Algebra Sample Questions with Answers
+Question 1: If (a – 2)2 + (b + 3)2 + (c – 5)2 = 0, then find the value of a – b – c.
+
+Solution: Given: (a – 2)2 + (b + 3)2 + (c – 5)2 = 0
+
+So, a – 2 = 0 ⇒ a = 2
+
+And, b + 3 = 0 ⇒ b = -3
+
+And, c – 5 = 0 ⇒ c = 5
+
+Therefore, a – b – c = 2 – (-3) – 5 = 0
+
+
+Question 2: If (2x + 3)³ + (x − 8)³ + (x + 13)³ = (2x + 3)(3x − 24)(x + 13), find the value of x.
+
+Solution:
+We know the identity: If a³ + b³ + c³ − 3abc = 0, then a + b + c = 0.
+
+Here,
+a = 2x + 3
+b = x − 8
+c = x + 13
+
+Given:
+(2x + 3)³ + (x − 8)³ + (x + 13)³ = (2x + 3)(3x − 24)(x + 13)
+
+Note that 3x − 24 = 3(x − 8), so the right side is equal to 3abc.
+
+So,
+(2x + 3)³ + (x − 8)³ + (x + 13)³ − 3(2x + 3)(x − 8)(x + 13) = 0
+
+Using the identity,
+(2x + 3) + (x − 8) + (x + 13) = 0
+4x + 8 = 0
+4x = −8
+x = −2
+Answer: x = −2
+
+
+Question 3: If x + 1/x = 2, find the value of x⁵ + 1/x⁵.
+Solution:
+x + 1/x = 2
+This is possible only when x = 1.
+
+So,
+x⁵ + 1/x⁵ = 1⁵ + 1/1⁵ = 1 + 1 = 2
+Answer: 2
+
+
+Question 4: If x + 1/x = −2, find the values of x⁵ + 1/x⁵ and x⁴ + 1/x⁴.
+
+Solution:
+x + 1/x = −2
+This is possible only when x = −1.
+
+So,
+x⁵ + 1/x⁵ = (−1)⁵ + 1/(−1)⁵ = −1 − 1 = −2
+
+x⁴ + 1/x⁴ = (−1)⁴ + 1/(−1)⁴ = 1 + 1 = 2
+
+Answers:
+x⁵ + 1/x⁵ = −2
+x⁴ + 1/x⁴ = 2
+
+
+Question 5: If x + 1/x = 2, find the value of x² + 1/x².
+Solution:
+x + 1/x = 2
+
+Square both sides:
+(x + 1/x)² = x² + 1/x² + 2
+
+4 = x² + 1/x² + 2
+x² + 1/x² = 2
+
+Answer: 2
+
+
+Question 6: If x + 1/x = 5, find the value of x³ − 1/x³.
+Solution:
+We use the identity:
+x³ − 1/x³ = (x − 1/x)³ + 3(x − 1/x)
+
+First find x − 1/x:
+(x − 1/x)² = (x + 1/x)² − 4
+= 25 − 4
+= 21
+
+So,
+x − 1/x = √21
+
+Now,
+x³ − 1/x³ = (√21)³ + 3√21
+= 21√21 + 3√21
+= 24√21
+
+Answer: 24√21
+
+
+Question 7: If x + 1/x = 1, find the value of x²⁰ − 1/x²⁰.
+Solution:
+From x + 1/x = 1, we get x ≠ ±1.
+
+Since powers are even,
+x²⁰ − 1/x²⁰ = 0
+
+Answer: 0
+
+
+Question 8: If x + 1/x = −1, find the value of x²⁰ − 1/x²⁰.
+Solution:
+Again, the power is even.
+
+So,
+x²⁰ − 1/x²⁰ = 0
+
+Answer: 0
+
+
+Question 9: If x + 1/x = 5, then find the value of x^3 + 1/x^3
+Solution: x^3 + 1/x^3 = 5^3 – 3 x 5 = 110

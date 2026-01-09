@@ -38,70 +38,44 @@ class SolverAgent:
         constraint_text = f"\nConstraints: {', '.join(constraints)}" if constraints else ""
         knowledge_text = f"\n\nRelevant Knowledge:\n{knowledge}" if knowledge else ""
         
-        return f"""You are a Deterministic Math Solver using Python.
+        return f"""You are a Deterministic Math Solver using Python. 
 
-            **PROBLEM**
-            {problem}{var_text}{constraint_text}
+### PROBLEM CONTEXT
+{problem}
+{var_text}
+{constraint_text}
 
-            **CRITICAL: YOU MUST USE THE TOOL**
+### CRITICAL FORMATTING RULES (TO PREVENT SYSTEM CRASH)
+1. **NO MARKDOWN HEADERS**: Do not use '#' or '##' or '###' anywhere in your response.
+2. **NO CODE BLOCKS**: Do not use triple backticks (```) or any markdown code formatting in your text response.
+3. **PLAIN TEXT ONLY**: Your conversational thoughts must be simple, plain text sentences.
+4. **TOOL CALLS**: All Python code MUST be placed exclusively inside the `python_solver` tool arguments.
 
-            You have access to python_solver tool. You MUST CALL IT to solve problems.
+### LIBRARIES & ENVIRONMENT
+- Libraries are PRE-IMPORTED: `math`, `statistics`, `sympy` (as `sp`), and `numpy` (as `np`).
+- **DO NOT** use 'import' statements. Using 'import' will trigger a Security Error.
+- Define symbols as: `x = sp.Symbol('x', real=True)`.
+- Always assign your final result to a variable named `result`.
 
-            DO NOT:
-            Write code in markdown blocks in your response
-            Explain what code would look like
-            Show example code without calling the tool
+### WORKFLOW
+1. **PLAN**: State your strategy in one plain-text sentence. 
+2. **ACTION**: Call the `python_solver` tool immediately.
+3. **OBSERVE**: Use the tool's output to form your next thought or final answer.
 
-            DO THIS:
-            CALL the python_solver tool with your code
-            Put code in the tool call arguments
-            Wait for execution result
-            Use result to form your answer
+### EXAMPLE OF CORRECT BEHAVIOR
+Plan: I will calculate the combinations for the total and favorable outcomes.
+[CALL python_solver with code="nS = math.comb(10, 2); nE = math.comb(4, 2); result = nE/nS"]
 
-            **PRE-IMPORTED LIBRARIES** (DO NOT use import statements)
-            - math: Standard functions
-            - statistics: Statistical functions
-            - sympy (as sp): Symbolic mathematics (use sp.Symbol, sp.solve, etc.)
-            - numpy (as np): Numerical arrays
+### EXAMPLE OF WRONG BEHAVIOR (CRASHES THE SYSTEM)
+"## Plan: I will use math. 
+Code: ```python 
+import math... 
+```" 
+-> NEVER DO THIS. Headers and backticks cause a 400 Bad Request error.
 
-            **RULES**
-            1. Libraries are already imported - NO import statements
-            2. Define symbols: x = sp.Symbol('x', real=True)
-            3. Assign final answer to: result = your_answer
-            4. Use deterministic methods only
+{knowledge_text}
 
-            **RESPONSE FORMAT**
-
-            For each step:
-            1. State your PLAN briefly
-            2. CALL python_solver tool (don't write code in text!)
-            3. Review the result
-            4. Continue or provide final answer
-
-            **EXAMPLE OF CORRECT TOOL USAGE**
-
-            Problem: "Calculate 5!"
-
-            You think: "I need to calculate factorial"
-            You respond: "PLAN: Calculate factorial of 5"
-            You CALL python_solver with code: "result = math.factorial(5)"
-            Tool returns: "120"
-            You respond: "The factorial of 5 is 120"
-
-            **EXAMPLE OF WRONG USAGE**
-
-            Problem: "Calculate 5!"
-            WRONG:
-            "PLAN: Calculate factorial
-            CODE: ```python
-            result = math.factorial(5)
-            ```
-            The answer is 120"
-
-            This is WRONG because you didn't CALL the tool - you just wrote code in text!
-            {knowledge_text}
-
-            Remember: CALL THE TOOL, don't describe the code!"""
+Remember: Be concise, be plain-text, and CALL THE TOOL."""
 
     def solve(self, state: MathMentorState) -> Dict[str, Any]:
         """

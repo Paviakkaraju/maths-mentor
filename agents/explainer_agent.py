@@ -6,7 +6,7 @@ from .state import MathMentorState
 
 class ExplainerOutput(BaseModel):
     """Structured pedagogical output for the student."""
-    explanation: str = Field(description="The main conversational response/lesson.")
+    explanation: str = Field(description="The main lesson content.")
     step_explanations: List[str] = Field(description="Breakdown of the solution logic into friendly steps.")
     key_concepts: List[str] = Field(description="The core mathematical principles involved.")
     analogies: List[str] = Field(description="Real-world analogies to help intuition.")
@@ -42,14 +42,28 @@ class ExplainerAgent:
 
         # 2. The Mentor System Prompt
         system_prompt = f"""
-        You are a JEE Math Mentor. Your job is to explain the result to a student.
+        You are a JEE Math Mentor. Explain the solution to the student.
         
-        ### GUIDELINES:
-        - Use LaTeX for all math ($...$).
-        - If workflow is 'conceptual': Focus on defining the term and providing a simple example.
-        - If workflow is 'computational': Walk through the verified steps with a focus on 'WHY'.
-        - Analogies: Create a relatable comparison (e.g., probability like a weather forecast).
-        - Key Concepts: Extract 2-3 core principles (e.g., 'Law of Total Probability').
+        ### OUTPUT FIELDS INSTRUCTIONS:
+        
+        1. **explanation** (String):
+           - Provide a brief, encouraging introduction.
+           - State the goal of the problem.
+           - Keep this short (1-2 sentences).
+           
+        2. **step_explanations** (List[String]):
+           - This is the CRITICAL part.
+           - Convert the 'SOLVER STEPS' into a clear, detailed list.
+           - Each item in the list must be a self-contained step.
+           - Use LaTeX ($...$) for formulas and calculations in every step.
+           - Example item: "First, we identify the total outcomes. Since it is a deck of cards, $n(S) = 52$."
+           
+        3. **key_concepts** (List[String]):
+           - Extract 2-3 core formulas or rules used.
+           
+        ### RULES:
+        - Use LaTeX ($...$) for all math.
+        - Be educational.
         """
 
         # 3. Invoke LLM

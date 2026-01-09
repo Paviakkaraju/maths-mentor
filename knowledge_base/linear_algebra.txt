@@ -1,0 +1,423 @@
+Linear Algebra is a mathematical discipline, that deals with solving vector spaces, matrices, and linear transformations by forming and solving linear equations. Mathematics or Quantitative Aptitude is an important section that is included in almost all competitive exams. Solving Linear Algebra under Algebra forms the basis of the maths section as all the other divisions of mathematics require linear equations in some ways or the other. 
+
+Linear algebra is concerned with linear equation such as:  a1x1+a2x2+………..anxn=b
+In this equation, x1,x2,x3………xn is mapping, and a1,a2,a3……..an is constant.
+It included lines and planes, matrix, vector space and mapping that are required for the linear transform.
+A linear equation is just a series of terms and mathematical operations where some terms are unknown.
+
+What is linear algebra?
+Linear algebra includes the study of linear combinations. The use of linear algebra is crucial when figuring out unknown numbers. The following are some real-world uses for linear algebra: to compute time, distance, or speed. It is utilized when projecting a three-dimensional image onto a two-dimensional surface related to linear mapping.
+
+Types of equations in Linear Algebra
+Here are the different types of linear equations that help to solve equations of line, homogeneous linear equations, matrices , vectors and vector spaces.
+
+1. Equation of Line under linear algebra
+Example:  y = 3x + 4
+
+This equation is a linear equation. Which describes 2 dimensions (2D) x and y axis. It’s also called the equation of line. Put different values of x and find respective values of y and by the help of these coordinates of point we can draw a line in x and y axis.
+
+y = mx + c 
+
+It’s the equation of line. In this equation m is slope and c is y intercept. Many equations of line like point-slope form, two point form, intercept form and normal form.
+
+
+2. System Of Equations
+Example:
+y1=1x1+2x2+3x3
+
+y2=2x1+3x2+5x3
+
+y3=3x1+4x2+6x3
+
+It’s called a system of equations. Here y is output and x1,x2,x3
+ are input. x consists of 3 rows and 3 columns. System of equations consists of many possibilities like no solution, one solution and infinite solutions. It’s denotes is Y = a X
+
+Solving systems of linear equation very method. Gaussian elimination (Gauss’ method), elementary row operations, leading variables, free variables, echelon form, matrix, augmented matrix, Gauss-Jordan reduction, reduced echelon form .
+
+
+3. Homogeneous Equations under linear algebra
+A linear equation is a homogeneous equation if the constant part is zero.
+
+Example: 3x+6y=0
+ is a homogeneous equation
+
+In general, homogeneous equation with variable x1,x2……..xn
+ and coefficient is a1,a2……..an
+
+It represents a1x1+a2x2+………..anxn=0
+ 
+
+4. Two linear equations to find condition of solution 
+In linear algebra we consist of the solution of two linear equations.
+
+For general form of a1x+b1y=c1
+ and a2x+b2y=c2
+  
+
+In both equation we will find some condition of solution 
+
+i)  If a1a2=b1b2=c1c2
+
+Then, coincident line and infinite solution
+
+ii) If a1a2=b1b2≠c1c2
+
+Parallel lines and No solution
+
+iii) If a1a2≠b1b2
+
+Intersecting lines and exact solution (Unique solution).
+
+5. Matrix Equations under linear algebra
+Matrix is a linear equation. Some Matrix equations are homogeneous as well as non-homogenous. For example:
+
+     2x + 3y + 7z = 0
+
+     4x + 5y + 3z = 0
+
+     3x + 2y + 8z = 0
+
+These equations are called systems of linear equations. In this equation the constant part is zero. So, it’s equations are homogeneous linear equations
+
+If  2x + 3y + 7z = 0
+
+     4x + 5y + 3z = 0
+
+     3x + 2y + 8z = 3
+
+In this system of linear equations are not homogenous. Because the constant part is not zero.
+
+6. Vector Equations under linear algebra
+Vector equation is also a linear equation; it can be described by the matrix equation to represent a vector form. 
+
+Ex, 3x + 4y + 6x = 0
+
+       4x + 7y + 9z = 0
+
+They both equation are homogeneous linear equation we can change in the vector form like:                       
+
+[344769]
+ ⎡⎣⎢xyz⎤⎦⎥
+ = [0]
+
+Generally, vector is represented magnitude with direction
+
+a = 3i + 4j + 5k
+
+This equation is a linear and i, j and k are represented respectively by the x, y and z axis. And coefficients of i, j and k represent distance with origin respectively.
+
+Here i, j and k are unit vectors.
+
+In a vector equation,” we can find Eigen value”.
+
+For solution of Eigenvalue we equate the whole equation |A – ʎI| = 0
+
+Here, A is a matrix and ʎ is an Eigenvalue of matrix and I is a identity matrix.
+
+Properties of Eigenvalues
+i) Sum of Eigenvalues is equal to the sum of trace. (Trace is the sum of main diagonal of matrix)
+
+ii) Multiply of Eigenvalue is equal to determinant of matrix 
+
+Overall the conclusion of linear algebra is that it helps solve various equations in mathematics. Linear algebra is used to solve mathematical topics. Since linear algebra is the most fundamental topic of the maths section that is required in almost all the domains of mathematics, it’s important for you to clear your concept and practice as much as possible. Once you know the basics of linear algebra, solving matrix and vector equations also becomes simple.
+
+Linear Algebra and its Applications
+
+Almost all fields employ linear algebra. Simple algorithms also employ linear algebra concepts such as matrices. Here are a few examples of how linear algebra is used:
+Signal processing: In signal processing, signals like audio and video signals are encoded and altered using linear algebra. It's also necessary for the examination of certain kinds of signals.
+Linear Programming is an optimization approach used to obtain the optimal outcome of a linear function.
+Computer Science: To tackle challenging issues, data scientists employ a variety of linear algebraic techniques.
+Prediction Algorithms: Through the application of linear algebraic ideas, prediction algorithms create linear models.
+
+
+Solved Examples on Linear Algebra
+The matrix (⎡⎣⎢13120146P⎤⎦⎥)
+ has one eigenvalue equal to 3. What is the sum of the other two eigenvalues ?
+
+Sum of the eigen values of matrix is = Sum of diagonal values present in the matrix
+
+∴ 1 + 0 + P = 3 + λ2 + λ3
+
+⇒ P + 1 = 3 + λ2 + λ3
+
+⇒ λ2 + λ3 = P + 1 – 3 = P – 2
+
+If λ is eigenvalues of A, and A is idempotent matrix, then
+
+Concept:
+
+Idempotent matrix: Any square matrix ‘A’ of order n is said to be idempotent matrix if A2 = A
+
+Cayley-Hamilton theorem: According to the Cayley-Hamilton theorem, every matrix ‘A’ satisfies its own characteristic equation.
+
+Characteristic equation: If A is any square matrix of order n, we can form the matrix [A – λI], where I is the nth order unit matrix. The determinant of this matrix equated to zero i.e. |A – λI| = 0 is called the characteristic equation of A.
+
+Eigenvalues: The roots of the characteristic equation are called Eigenvalues or latent roots or characteristic roots of matrix A.
+
+Calculation:
+
+Given that, A is idempotent matrix.
+
+⇒ A2 = A
+
+⇒ A2 – A = 0
+
+According to Cayley-Hamilton theorem, the characteristic equation is
+
+⇒ λ2 – λ = 0
+
+Eigen values are the roots of the characteristic equation.
+
+⇒ λ (λ – 1) = 0
+
+⇒ λ = 0, 1
+
+Therefore, the Eigen values of A is either 0 or 1.
+
+Gauss-Seidel method is used to solve the following equations (as per the given order):
+x1 + 2x2 + 3x3 = 5
+2x1 + 3x2 + x3 = 1
+3x1 + 2x2 + x3 = 3
+Assuming initial guess as x1 = x2 = x3 = 0, the value of x3 after the first iteration is ________
+
+Concept:
+
+Gauss Seidel Method:
+
+In Gauss Seidel method, the value of x calculated is used in next calculation putting other variable as 0.
+
+x1 + 2x2 + 3x3 = 5
+
+Putting x2 = 0, x3 = 0 ⇒ x1 = 5
+
+2x1 + 3x2 + x3 = 1
+
+Putting x1 = 5, x3 = 0 ⇒ x2 = -3
+
+3x1 + 2x2 + x3 = 3
+
+Putting x1 = 5, x2 = -3 ⇒ x3 = 3 – 3(5) – 2 (-3)
+
+x3 = 3 – 15 + 6
+
+x3 = -6
+
+ 
+
+Mistake Point → Don’t arrange them diagonally because It is given in question solve as per given order.
+
+The set of equations
+x + y + z = 1
+ax – ay + 3z = 5
+5x – 3y + az = 6
+has infinite solutions, if a =
+
+Concept:
+
+Non-homogeneous equation of type AX = B has infinite solutions if ρ(A : B) = ρ(A) < Number of unknowns
+
+Calculation:
+
+Given set of equations
+
+x + y + z = 1
+
+ax – ay + 3z = 5
+
+5x – 3y + az = 6
+
+⎡⎣⎢⎢⎢⎢1a51–a–313a⋮⋮⋮156⎤⎦⎥⎥⎥⎥
+
+R2 → R2 – aR1 and R3 → R3 – 5R1
+
+~ ⎡⎣⎢⎢⎢⎢1001–2a–813–aa–5⋮⋮⋮15–a1⎤⎦⎥⎥⎥⎥
+
+R2→R2–2a
+
+~ ⎡⎣⎢⎢⎢⎢10011–8112–32aa–5⋮⋮⋮112–52a1⎤⎦⎥⎥⎥⎥
+
+R3 → R3 + 8R2
+
+~  ⎡⎣⎢⎢⎢⎢100110112–32aa–1–12a⋮⋮⋮112–52a5–20a⎤⎦⎥⎥⎥⎥
+ ~ ⎡⎣⎢⎢⎢⎢100110112–32aa2–a–12a⋮⋮⋮112–52a5a–20a⎤⎦⎥⎥⎥⎥
+
+a2 – a – 12 = 0
+
+a2 – 4a + 3a – 12 = 0
+
+a(a – 4) + 3(a – 4) = 0
+
+(a – 4)(a + 3) = 0
+
+A = 4, -3
+
+When a = 4, then ρ(A : B) = ρ(A) = 2 < 3
+
+Hence, given system of equations have infinite solutions when a = 4.
+
+Note: here a = -3 we cannot consider because for a = -3  ρ(A : B) ≠  ρ(A) [/latex]
+
+Key Points:
+
+Remember the system of equations
+
+AX = B have
+
+1) Unique solution, if ρ(A : B) = ρ(A) = Number of unknowns.
+
+2) Infinite many solutions, if ρ(A : B) = ρ(A) < Number of solutions
+
+3) No solution, if ρ(A : B) ≠ ρ(A).
+
+Let X be a square matrix. Consider the following two statements on X.
+I. X is invertible.
+II. Determinant of X is non-zero.
+Which one of the following is TRUE?
+
+I implies II means ≡ I → II
+
+X–1=Adj(X)|X|
+
+If |X| ≠ 0 then X-1
+
+|X|=Adj(X)X–1
+
+If X-1 then |X| ≠ 0 also |Adj X| = |X|n – 1 then |Adj X| ≠ 0
+
+If X-1 then |X| ≠ 0
+
+I implies II and II implies I
+
+∴ Both I and II are equivalent
+
+Note:
+
+X-1 means X is invertible
+
+|X| determinant of X
+
+Consider a matrix P whose only eigenvectors are the multiples of [14]
+.
+Consider the following statements.
+(I) P does not have an inverse
+(II) P has a repeated eigenvalue
+(III) P cannot be diagonalized
+Which one of the following options is correct?
+
+As eigen vectors are multiples of [14]
+ hence P does have repeated eigen values.
+
+Also a matrix is diagonalizable if it has distinct eigen values.
+
+Given a system of equations
+x+2y+2z=b1,5x+y+3z=b2
+
+Which of the following is true about solutions?
+
+ 
+
+Concept:
+
+The system Ax = B, with coefficient matrix A and augmented matrix [A|B], the number of unknowns is n.
+
+Below, we summarize the possibilities for solving the system.
+
+i. Ax = B is inconsistent (i.e., no solution exists) if and only if rank[A] < rank[A|B].
+
+ii. Ax = B has a unique solution if and only if rank[A] = rank[A|B] = n.
+
+iii. Ax = B has infinitely many solutions if and only if rank[A] = rank[A|B] < n
+
+Calculation:
+
+x+2y+2z=b1,5x+y+3z=b2
+
+Above given equation is in the form of Non – Homogeneous equation.
+
+Here, number of variables (n) = 3.
+
+Now,
+
+AX = B
+
+[A:B]=[152123b1b2]R2⇒R2–5R1[102–92–7b1b2–5b1]
+
+There exist two non – zero rows irrespective of values of b1 and b2.
+
+Rank of A=2=
+ Rank of [A:B]
+ is less than the number of variable.
+
+∴ The system has infinite number of solutions.
+
+Note:
+
+Homogeneous equations are always consistent
+
+Non – homogeneous equations has either no solution, one solution or infinite solutions.
+
+In the LU decomposition of the matrix [2429],
+if the diagonal elements of U are both 1, then the lower diagonal entry I22 of L is
+
+Given LU=[2429]
+
+[xz0y][10p1]=[2439]
+
+[xzxpzp+y]=[2429]
+
+lower diagonal entry I22 = y
+
+x = 2,
+
+xp = 2
+
+∴ p = 1
+
+z = 4
+
+zp + y = 9
+
+(4)(1) + y = 9
+
+y = 9 – 4
+
+∴ y = 5
+
+lower diagonal entry I22 = 5
+
+One of the eigenvectors of the matrix [–5–926]
+ is
+
+Eigen vector should satisfy Ax = λx, where λ is eigen value
+
+Taking x=[11]
+
+[–5–926][11]=[–3–3]=–3[11]=λx
+
+∴ Option 4 is the correct answer.
+
+The matrix ⎡⎣⎢13120146P⎤⎦⎥
+has one eigenvalue equal to 3. The sum of the other two eigenvalues is
+
+Sum of the eigen values of matrix is = Sum of diagonal values present in the matrix
+
+∴ 1 + 0 + P = 3 + λ2 + λ3
+
+⇒ P + 1 = 3 + λ2 + λ3
+
+⇒ λ2 + λ3 = P + 1 – 3 = P – 2
+
+
+Questions to Ace Your Exams
+Q1. Is linear algebra hard? Is linear algebra harder than calculus? What is linear algebra used for?  
+Linear Algebra with a textbook and typical lectures might be difficult. Linear Algebra is rated as a more challenging course by many students in typical lecture courses than Calculus I and Calculus II.  Linear algebra is regarded as a fundamental element in the current teaching of geometry. It is largely used in physics and engineering to define fundamental objects like as planes, lines, and object rotations. It enables us to model numerous natural events while also being computationally efficient.
+
+Q2. What is a span in linear algebra? What is a matrix linear algebra? What is subspace linear algebra?    
+The set of all feasible linear combinations of a set of vectors is referred to as the span of that set in linear algebra. The vector space holding the initial vectors is always the subspace of the span. A collection of vectors is said to cover the complete vector space if its span encompasses every vector in the vector space. A collection of vectors is said to be linearly dependent if its span is a proper subspace—that is if it contains just a portion of the vector space.  In linear algebra, matrices are used to express linear mappings and enable explicit calculations. The study of matrices is a substantial portion of linear algebra, and most characteristics and actions of abstract linear algebra may be described in terms of matrices. 
+In the field of mathematics, particularly in linear algebra, a vector space that is a subset of a broader vector space is referred to as a linear subspace or vector subspace. 
+
+Q3. What is a basis in linear algebra? What is geometric multiplicity in linear algebra? What is null space linear algebra?    
+Any element of vector space V that can be uniquely expressed as a finite linear mix of elements of set B is referred to as a basis in maths. The dimension of the subspace that the eigenvectors linked to λ span are known as the geometric multiplicity. A m × n matrix A's null space, sometimes referred to as Null A, is the collection of every possible answer to the homogeneous equation Ax = 0.
+
+Q4. What is a trivial solution in linear algebra? What is a vector space in linear algebra?
+If every coordinate in a vector is zero, or if the vector is the zero vector, it is referred to as trivial. A vector space, often referred to as a linear space, is an assembly of vectors multiplied ("scaled") by scalars or integers, then combined together. Typically, scalars are regarded as real numbers. However, scalar multiplication by complex, rational, etc., numbers is rare.

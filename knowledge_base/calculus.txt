@@ -1,0 +1,149 @@
+Calculus (Limits, Derivatives)
+Limits and derivatives are the starting point of calculus, which is an important branch of mathematics. Calculus helps us study change and motion, and it is widely used in science and engineering. Limits allow us to see how a function behaves when the input gets closer to a certain value, even if it cannot be calculated directly. Derivatives, on the other hand, show how quickly a function is changing at any point. They are used to find slopes, speeds, growth, and many real-life situations. Understanding limits and derivatives builds a strong base for learning advanced topics in mathematics and physics.
+
+What is Limit of a Function
+The concept of limit can be described as the value that approaches as the input gets closer to some particular number. In other words, limits describe how a function behaves near a point, instead of at that point. To understand what limits are, let’s look at an example. We start with the function f(x)=x+2.
+
+The limit of f at x=3 is the value of f approaches as we get closer and closer to x=3. Graphically, this is the y-value we approach when we look at the graph of f and get closer and closer to the point on the graph where x=3.
+For example, if we start at the point (1,3) and move on the graph until we get really close to x=3, then our y-value (i.e. the function’s value) gets really close to 5.
+
+Similarly, if we start at (5,7) and move to the left until we get really close to x=3, the y-value again will be really close to 5.
+So, we say that the limit of fat x=3 is 5.
+
+You might be asking yourselves what’s the difference between the limit of f at x=3 and the value of f at x=3, i.e. f(3).
+
+So, yes the limit of f(x)=x+2at x=3 is equal to f(3), but this isn’t always the case. To understand this, let’s look at the function g. This function is the same as f in every way except that it’s undefined at x=3.
+
+Here, just like f, the limit of g at x=3 is 5. That’s because we can still get very very close to x=3 nd the function’s values will get very very close to 5.
+
+Thus, the value of the limit of gwhen x=3 is 5, but the value of gat x=3 is not defined. So, they are different.
+
+That's the beauty of limits, they don't work based on the function actually having a value at the limit. They tell us what the function is approaching as it approaches the limit.
+
+
+Limit Representation
+We also have a special notation to denote the limits. The limit of a function can be represented by
+limx→af(x)=L.
+
+Theorem of Limits
+Theorem 1: If f is a polynomial or a rational function, and a is in the domain of f, then limx→af(x)=f(a).
+
+Theorem 2: If f(x)=g(x), whenever x≠a, then limx→af(x)=limx→ag(x).
+
+Properties of Limits
+Assume limx→af(x) and limx→ag(x) exist and that c is any constant. Then, the properties of limits are given below: 
+limx→a[cf(x)]=climx→af(x)
+limx→a[f(x)±g(x)]=limx→af(x)±limx→ag(x)
+limx→a[f(x)⋅g(x)]=limx→af(x)⋅limx→ag(x)
+limx→a[f(x)g(x)]=limx→af(x)limx→ag(x), provided limx→ag(x)≠0
+limx→a[f(x)]n=[limx→af(x)]n, where nis any real number
+limx→a[f(x)−−−−√n]=limx→af(x)−−−−−−−√n
+limx→ac=c, c is any real number.
+limx→ax=a
+limx→axn=an, if n is a positive integer.
+
+
+Limits Formula
+The important limits formula are given below:
+Limits of Important Trigonometric Functions:
+limx→0sin(x)=0
+limx→0cos(x)=1
+limx→01−cos(x)x=0
+limx→0sin−1(x)x=1
+limx→0tan−1(x)x=1
+limx→0sin(x)x=1
+limx→0tan(x)x=1
+
+L’Hospital Rule:
+limx→af(x)g(x)=f′(a)g′(a), if limx→af(x)g(x)gives the form 00, where f(a)=0and g(a)=0.
+
+Limits of Exponential and Log Functions:
+limx→0ex=1
+limx→0ex−1x=1
+limx→∞(1+1x)x=e
+limx→∞(1+ax)x=ea
+limx→0(1+x)1x=e
+limx→0ax−1x=loge(a)
+limx→0log(1+x)x=1
+
+Xn Formula:
+limx→axn−anx−a=n⋅an−1
+
+How to Check if Limit Exists:
+To check whether the limit exists for the function f(x)=a at ]latex]x=a[/latex]. For this, we have to check if,
+Left hand limit (LHL) = Right hand limit (RHL) = f(a) , i.e.,limx→a−f(x)=limx→a+f(x)=f(a).
+
+
+
+
+Derivative of a Function
+A derivative of a function is a rate of change of the function with respect to change in a variable. Let us see what a derivative technically means. Consider a curve of function f(x)
+and let two points on it be (x,f(x)) and ((x+h),f(x+h)). Then the slope of the secant line through these points is given by [f(x+h)−f(x)]x+h−x=[f(x+h)−f(x)]h
+
+Derivative Representation
+The derivative of a function f(x) is usually represented by ddx(f(x))or dfdxor Df(x) or f′(x)
+The formula for derivative of a function is given as f′(x)=limh→0f(x+h)−f(x)h
+
+
+Applications of Limits and Derivatives
+Limits and derivatives are two of the most useful concepts in calculus. They are not only important in mathematics but also in science, economics, and daily life problems.
+
+1. Applications of Limits
+Finding values not directly defined: Limits help when a function gives an indeterminate form like 0/00/00/0. By using limits, we can find the correct value.
+Studying continuity of functions: Limits help to check whether a function is continuous at a point or has a break or gap.
+In science and physics: Limitations are applied when dealing with extremely small changes, for example, the speed at any moment or population increase.
+Approximations: If the values are too little or too big, then limits assist us in approximating them appropriately.
+
+2. Applications of Derivatives
+Rate of change: Derivatives measure how one quantity changes with respect to another. For example, speed is the rate of change of distance with time.
+Slope of a curve: Derivatives give the slope of a function at any point, which is useful in geometry and graph analysis.
+Maxima and minima: Derivatives help to find the highest and lowest values of functions, useful in optimization problems like profit, cost, or area.
+Physics applications: They are used to calculate velocity, acceleration, and motion-related quantities.
+Economics and business: Derivatives help in marginal cost, marginal revenue, and forecasting trends.
+To learn about the limits and continuity in detail, please click here.
+
+Solved Examples of Limits and Derivatives
+Example 1: Evaluate the limit: limx→3x2−9x−3
+Solution: We know, the limit of the given function is 00
+
+Now, by representing the numerator as the product of two terms, we get
+limx→3x2−9x−3
+=limx→3(x+3)(x−3)x−3
+=limx→3(x+3)
+=3+3
+=6
+Hence, limx→3x2−9x−3=6
+
+
+Example 2: Compute the derivative of f(x)=x+1x
+Solution: Use the quotient rule for derivative, i.e. ddx(f(x)g(x))=ddx(f(x))×g(x)+f(x)×ddx(g(x))[g(x)]2
+df(x)dx
+=ddx(x+1x)
+=[1(x)−(x+1)1]x2
+=x−x−1x2
+=−1x2
+Thus, the derivative of f(x)
+ is −1x2
+
+
+Example 3: Find the limit of limx→0(sin(4x)tan(x))
+Solution: Multiply and dividing by 4x, we get limx→0(sin(4x)tan(x))
+=limx→0[sin(4x)4x×4xtan(x)]
+=limx→0(sin(4x)4x)×4limx→0(xtan(x))
+=1×4
+=4 (by using L-Hospital’s Rule) Thus, the limit of the given function is 4
+
+Example 4: Find the derivative of the function: f(x)=2x2+3x−4
+Solution: Use the sum rule for derivative, i.e. ddx(f(x)+g(x))=ddx(f(x))+ddx(g(x))
+Given: f(x)=2x2+3x−4, then
+ddx(f(x))
+=ddx(2x2+3x−4)
+=ddx(2x2)+ddx(3x)−ddx(4)
+Use the property ddx(c×f(x))=c×ddx(f(x)), we get
+=2ddx(x2)+3ddx(x)−ddx(4)
+=2(2x)+3(1)−0
+=4x+3
+Thus, the derivative of the given function is 4x+3
+
+
+
