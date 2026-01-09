@@ -17,7 +17,6 @@ tiktoken>=0.5.0
 pydantic>=2.0.0  
 pydantic>=2.0.0  
 easyocr
-opencv-python
 numpy
 pillow
 groq
