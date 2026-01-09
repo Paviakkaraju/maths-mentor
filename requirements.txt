@@ -21,3 +21,4 @@ numpy
 pillow
 groq
 langchain-chroma
+langchain_huggingface
