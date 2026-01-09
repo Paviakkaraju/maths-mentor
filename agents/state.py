@@ -27,18 +27,22 @@ class MathMentorState(TypedDict):
     # Intent Router Outputs ---
     workflow_type: Optional[Literal["conceptual", "computational", "ambiguous"]]
     plan: List[str] # Sequential steps for the agents to follow
+    rag_chunks: List[Dict] 
+
+    similar_problems: List[Dict] 
     
-    # Solver Agent Outputs
-    rag_chunks: List[Dict]  
-    similar_problems: List[Dict]  
+    # Solver Agent Outputs 
     solution_steps: List[str]
     final_answer: str
     solver_reasoning: str  
-    calculations_performed: List[Dict]  
+    calculations_performed: Annotated[List, operator.add]
+    solver_trace: Annotated[List, operator.add]
     consolidated_knowledge: str  # The "Cheat Sheet" for the Solver or the raw material for the Explainer
     tools_used: List[str]  
     
     # Verifier Agent Outputs
+    solver_trials: int  # 0 for first attempt, 1 for second attempt
+    should_halt_for_hitl: bool
     is_correct: Optional[bool]  
     verification_confidence: float
     verification_notes: str

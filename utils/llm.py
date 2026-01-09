@@ -14,7 +14,7 @@ if not GROQ_API_KEY:
     logging.error("GROQ_API_KEY missing")
 
 LLM = ChatGroq(
-    temperature = float(os.getenv("TEMPERATURE", 0.3))
+    temperature = float(os.getenv("TEMPERATURE", 0))
                                   ,
     model_name = os.getenv("MODEL", "meta-llama/llama-4-scout-17b-16e-instruct"),
     groq_api_key = GROQ_API_KEY

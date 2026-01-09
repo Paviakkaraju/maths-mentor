@@ -1,0 +1,659 @@
+import json
+from datetime import datetime
+from typing import Dict, Any, List, Optional
+from langchain_core.messages import HumanMessage, SystemMessage, ToolMessage, AIMessage
+from langchain_core.tools import tool
+from .hardened_repl import HardenedMathREPL
+from .state import MathMentorState
+
+
+class SolverAgent:
+    """
+    Agent that solves mathematical problems using sandboxed Python execution.
+    Uses a ReAct pattern with enforced tool calling.
+    """
+    
+    def __init__(self, llm, max_iterations: int = 5, verbose: bool = False):
+        """
+        Initialize the solver agent.
+        
+        Args:
+            llm: Language model (should have temperature=0 for best tool calling)
+            max_iterations: Maximum number of ReAct iterations
+            verbose: Whether to print debug information
+        """
+        self.llm = llm
+        self.repl = HardenedMathREPL()
+        self.max_iterations = max_iterations
+        self.verbose = verbose
+    
+    def get_system_prompt(self, state: MathMentorState) -> str:
+        """Generate system prompt with strong tool use emphasis."""
+        problem = state.get('problem_text', 'No problem specified')
+        variables = state.get('variables', [])
+        constraints = state.get('constraints', [])
+        knowledge = state.get('consolidated_knowledge', '')
+        
+        var_text = f"\nVariables: {', '.join(variables)}" if variables else ""
+        constraint_text = f"\nConstraints: {', '.join(constraints)}" if constraints else ""
+        knowledge_text = f"\n\nRelevant Knowledge:\n{knowledge}" if knowledge else ""
+        
+        return f"""You are a Deterministic Math Solver using Python.
+
+**PROBLEM**
+{problem}{var_text}{constraint_text}
+
+**CRITICAL: YOU MUST USE THE TOOL**
+
+You have access to python_solver tool. You MUST CALL IT to solve problems.
+
+DO NOT:
+ Write code in markdown blocks in your response
+Explain what code would look like
+Show example code without calling the tool
+
+DO THIS:
+CALL the python_solver tool with your code
+Put code in the tool call arguments
+Wait for execution result
+Use result to form your answer
+
+**PRE-IMPORTED LIBRARIES** (DO NOT use import statements)
+- math: Standard functions
+- statistics: Statistical functions
+- sympy (as sp): Symbolic mathematics (use sp.Symbol, sp.solve, etc.)
+- numpy (as np): Numerical arrays
+
+**RULES**
+1. Libraries are already imported - NO import statements
+2. Define symbols: x = sp.Symbol('x', real=True)
+3. Assign final answer to: result = your_answer
+4. Use deterministic methods only
+
+**RESPONSE FORMAT**
+
+For each step:
+1. State your PLAN briefly
+2. CALL python_solver tool (don't write code in text!)
+3. Review the result
+4. Continue or provide final answer
+
+**EXAMPLE OF CORRECT TOOL USAGE**
+
+Problem: "Calculate 5!"
+
+You think: "I need to calculate factorial"
+You respond: "PLAN: Calculate factorial of 5"
+You CALL python_solver with code: "result = math.factorial(5)"
+Tool returns: "120"
+You respond: "The factorial of 5 is 120"
+
+**EXAMPLE OF WRONG USAGE**
+
+Problem: "Calculate 5!"
+WRONG:
+"PLAN: Calculate factorial
+CODE: ```python
+result = math.factorial(5)
+```
+The answer is 120"
+
+This is WRONG because you didn't CALL the tool - you just wrote code in text!
+{knowledge_text}
+
+Remember: CALL THE TOOL, don't describe the code!"""
+
+    def solve(self, state: MathMentorState) -> Dict[str, Any]:
+        """
+        Main solving logic with enforced tool calling.
+        
+        Args:
+            state: Current state containing problem and context
+            
+        Returns:
+            Dictionary with results and metadata
+        """
+        start_time = datetime.now()
+        
+        if self.verbose:
+            print(f"\n{'='*60}")
+            print(f"Starting solver for: {state.get('problem_text', 'Unknown')[:100]}")
+            print(f"{'='*60}\n")
+        
+        # Define the tool
+        @tool
+        def python_solver(code: str) -> str:
+            """Execute safe Python code for mathematical computations.
+            
+            CRITICAL: This tool EXECUTES code. You must CALL this tool.
+            
+            PRE-IMPORTED: math, statistics, sympy (sp), numpy (np)
+            
+            Args:
+                code: Python code to execute (no import statements)
+                
+            Returns:
+                Execution result or error message
+            """
+            if self.verbose:
+                print(f"[TOOL CALLED] Executing code:\n{code}\n")
+            
+            result = self.repl.execute(code)
+            
+            if self.verbose:
+                print(f"[TOOL RESULT] {result}\n")
+            
+            return result
+        
+        # Bind tool to LLM
+        llm_with_tools = self.llm.bind_tools([python_solver])
+        
+        # Initialize conversation with STRONG instruction to use tool
+        messages = [
+            SystemMessage(content=self.get_system_prompt(state)),
+            HumanMessage(content="""**CRITICAL INSTRUCTION**
+
+You MUST use the python_solver TOOL to solve this problem.
+
+DO NOT write code in your response text.
+DO NOT explain code without calling the tool.
+ACTUALLY CALL the python_solver tool with your code.
+
+Process:
+1. Think: What's my approach? (state your PLAN)
+2. Action: CALL python_solver tool with code
+3. Observe: See the result
+4. If done: State final answer
+5. If not done: CALL python_solver again
+
+Start by CALLING the python_solver tool now.""")
+        ]
+        
+        # Tracking variables
+        structured_trace = []
+        final_answer = None
+        iteration_count = 0
+        error_occurred = False
+        tool_was_called = False
+        
+        # Manual ReAct Loop
+        for iteration in range(self.max_iterations):
+            iteration_count += 1
+            
+            if self.verbose:
+                print(f"\n--- Iteration {iteration + 1}/{self.max_iterations} ---")
+            
+            try:
+                # Get LLM response
+                response = llm_with_tools.invoke(messages)
+                messages.append(response)
+                
+                # Check if tool was called
+                if not response.tool_calls:
+                    if self.verbose:
+                        print(f"[WARNING] No tool calls in iteration {iteration + 1}")
+                        print(f"Response: {response.content[:200]}...")
+                    
+                    # First iteration without tool call = push harder
+                    if iteration == 0 and not tool_was_called:
+                        if self.verbose:
+                            print("[ACTION] Prompting LLM to use tool...")
+                        
+                        messages.append(HumanMessage(
+                            content="""You did NOT call the python_solver tool. 
+
+I can see you wrote code or explanation in text, but you must CALL THE TOOL.
+
+Click/invoke the python_solver tool and put your code in the arguments.
+
+CALL THE TOOL NOW - don't write code in text!"""
+                        ))
+                        continue
+                    else:
+                        # LLM provided final answer after using tool
+                        final_answer = response.content
+                        
+                        if self.verbose:
+                            print(f"[INFO] Final answer received")
+                        
+                        break
+                
+                # Mark that tool was called
+                tool_was_called = True
+                
+                # Process tool calls
+                for tool_call in response.tool_calls:
+                    try:
+                        # Extract plan from response
+                        plan = self._extract_plan(response.content) if response.content else "Executing calculation"
+                        
+                        # Get code from tool call
+                        code = tool_call["args"].get("code", "")
+                        
+                        if not code:
+                            error_msg = "Tool called but no code provided"
+                            if self.verbose:
+                                print(f"[ERROR] {error_msg}")
+                            
+                            messages.append(
+                                ToolMessage(
+                                    content=f"Error: {error_msg}",
+                                    tool_call_id=tool_call["id"]
+                                )
+                            )
+                            continue
+                        
+                        # Add to trace
+                        trace_entry = {
+                            "iteration": iteration + 1,
+                            "plan": plan,
+                            "code": code,
+                            "timestamp": datetime.now().isoformat()
+                        }
+                        structured_trace.append(trace_entry)
+                        
+                        # Execute tool
+                        result = python_solver.invoke(tool_call["args"])
+                        
+                        # Validate result
+                        validation = self._validate_result(result)
+                        
+                        # Add result to trace
+                        result_entry = {
+                            "iteration": iteration + 1,
+                            "result": result,
+                            "is_error": validation["is_error"],
+                            "is_timeout": validation["is_timeout"],
+                            "is_security_error": validation["is_security_error"],
+                            "timestamp": datetime.now().isoformat()
+                        }
+                        structured_trace.append(result_entry)
+                        
+                        # Check for critical errors
+                        if validation["is_security_error"] or validation["is_timeout"]:
+                            error_occurred = True
+                        
+                        # Feed result back to LLM
+                        messages.append(
+                            ToolMessage(
+                                content=result,
+                                tool_call_id=tool_call["id"]
+                            )
+                        )
+                        
+                    except Exception as e:
+                        error_msg = f"Error processing tool call: {str(e)}"
+                        
+                        if self.verbose:
+                            print(f"[ERROR] {error_msg}")
+                        
+                        structured_trace.append({
+                            "iteration": iteration + 1,
+                            "error": error_msg,
+                            "timestamp": datetime.now().isoformat()
+                        })
+                        
+                        messages.append(
+                            ToolMessage(
+                                content=f"Error: {str(e)}",
+                                tool_call_id=tool_call["id"]
+                            )
+                        )
+                        error_occurred = True
+                
+            except Exception as e:
+                error_msg = f"Error in iteration {iteration + 1}: {str(e)}"
+                
+                if self.verbose:
+                    print(f"[ERROR] {error_msg}")
+                
+                structured_trace.append({
+                    "iteration": iteration + 1,
+                    "error": error_msg,
+                    "timestamp": datetime.now().isoformat()
+                })
+                error_occurred = True
+                break
+        
+        # Calculate execution time
+        execution_time = (datetime.now() - start_time).total_seconds() * 1000
+        
+        # Handle edge cases
+        if not tool_was_called:
+            final_answer = "ERROR: LLM did not call the python_solver tool despite multiple prompts."
+            error_occurred = True
+            
+            if self.verbose:
+                print(f"[CRITICAL] Tool was never called!")
+        
+        if final_answer is None and iteration_count >= self.max_iterations:
+            final_answer = f"Maximum iterations ({self.max_iterations}) reached. Check trace for last result."
+            
+            if self.verbose:
+                print(f"[WARNING] Max iterations reached")
+
+
+        # Extract specific fields for the global state
+        solution_steps = [t['plan'] for t in structured_trace if 'plan' in t]
+        calculations = [
+            {"code": t['code'], "result": t.get('result')} 
+            for t in structured_trace if 'code' in t
+        ]
+
+        # Prepare result
+        result = {
+            "final_answer": final_answer or "No answer generated",
+            "solution_steps": solution_steps,              # Mapping to state
+            "calculations_performed": calculations,
+            "solver_trace": structured_trace,
+            "execution_time_ms": round(execution_time, 2),
+            "iteration_count": iteration_count,
+            # "success": not error_occurred and final_answer is not None and tool_was_called,
+            "success": (final_answer is not None and final_answer != "" and not state.get("errors_unrecovered", False) and
+                        state.get("parsing_valid", True) and tool_was_called),
+            "error_occurred": error_occurred,
+            "tool_was_called": tool_was_called,
+            "timestamp": datetime.now().isoformat()
+        }
+        
+        if self.verbose:
+            print(f"\n{'='*60}")
+            print(f"Solver completed in {execution_time:.2f}ms")
+            print(f"Iterations: {iteration_count}/{self.max_iterations}")
+            print(f"Tool called: {tool_was_called}")
+            print(f"Success: {result['success']}")
+            print(f"{'='*60}\n")
+        
+        return result
+    
+    def _extract_plan(self, content: str) -> str:
+        """Extract plan from LLM response."""
+        if not content:
+            return "Executing calculation"
+        
+        # Look for PLAN: marker
+        if "PLAN:" in content.upper():
+            lines = content.split('\n')
+            for i, line in enumerate(lines):
+                if 'PLAN:' in line.upper():
+                    plan_text = line.split(':', 1)[1].strip()
+                    # Include next line if it's part of the plan
+                    if i + 1 < len(lines) and lines[i + 1].strip() and not any(
+                        marker in lines[i + 1].upper() for marker in ['CODE:', 'RESULT:', '```', 'CALL']
+                    ):
+                        plan_text += " " + lines[i + 1].strip()
+                    return plan_text
+        
+        # Fallback: first meaningful line
+        for line in content.split('\n'):
+            line = line.strip()
+            if line and not line.startswith('#') and not line.startswith('```'):
+                return line[:200]
+        
+        return "Solving problem"
+    
+    def _validate_result(self, result: str) -> Dict[str, Any]:
+        """Validate execution result."""
+        is_error = any(
+            error_type in result 
+            for error_type in ['Error:', 'Exception:', 'Traceback']
+        )
+        
+        return {
+            "is_error": is_error,
+            "is_timeout": "Timeout" in result,
+            "is_security_error": "Security Error" in result,
+            "result": result
+        }
+    
+    def solve_batch(self, problems: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+        """Solve multiple problems in batch."""
+        results = []
+        
+        for i, problem in enumerate(problems):
+            if self.verbose:
+                print(f"\n{'#'*60}")
+                print(f"Problem {i+1}/{len(problems)}")
+                print(f"{'#'*60}")
+            
+            result = self.solve(problem)
+            result["problem_index"] = i
+            results.append(result)
+        
+        return results
+    
+    def get_statistics(self, results: List[Dict[str, Any]]) -> Dict[str, Any]:
+        """Compute statistics across multiple solve results."""
+        if not results:
+            return {}
+        
+        total = len(results)
+        successful = sum(1 for r in results if r.get("success", False))
+        tool_called = sum(1 for r in results if r.get("tool_was_called", False))
+        errors = sum(1 for r in results if r.get("error_occurred", False))
+        
+        execution_times = [r.get("execution_time_ms", 0) for r in results]
+        iterations = [r.get("iteration_count", 0) for r in results]
+        
+        return {
+            "total_problems": total,
+            "successful": successful,
+            "failed": total - successful,
+            "tool_called_count": tool_called,
+            "tool_call_rate": round(tool_called / total * 100, 2) if total > 0 else 0,
+            "error_occurred": errors,
+            "success_rate": round(successful / total * 100, 2) if total > 0 else 0,
+            "avg_execution_time_ms": round(sum(execution_times) / total, 2) if total > 0 else 0,
+            "max_execution_time_ms": max(execution_times) if execution_times else 0,
+            "min_execution_time_ms": min(execution_times) if execution_times else 0,
+            "avg_iterations": round(sum(iterations) / total, 2) if total > 0 else 0,
+            "max_iterations_used": max(iterations) if iterations else 0
+        }
+
+
+# Example usage
+if __name__ == "__main__":
+    from utils.llm import LLM
+    import os
+    from dotenv import load_dotenv
+    load_dotenv()
+    
+    # Initialize
+    solver = SolverAgent(LLM, max_iterations=5, verbose=True)
+    
+    # Test problem
+    state = {
+        'problem_text': 'A bag has 4 red and 6 black balls. Find the probability of drawing 2 red balls without replacement.',
+        'variables': [],
+        'constraints': ['without replacement'],
+        'consolidated_knowledge': """
+                The probability of an event 
+𝐸
+E is defined as
+
+𝑃
+(
+𝐸
+)
+=
+𝑛
+(
+𝐸
+)
+𝑛
+(
+𝑆
+)
+P(E)=
+n(S)
+n(E)
+	​
+
+,
+where 
+𝑛
+(
+𝐸
+)
+n(E) is the number of favourable outcomes and 
+𝑛
+(
+𝑆
+)
+n(S) is the total number of possible outcomes.
+
+The combination formula, which is used to count selections where order does not matter, is
+
+𝑛
+𝐶
+𝑟
+=
+𝑛
+!
+𝑟
+!
+(
+𝑛
+−
+𝑟
+)
+!
+n
+C
+r
+	​
+
+=
+r!(n−r)!
+n!
+	​
+
+,
+where 
+𝑛
+!
+n! denotes the factorial of 
+𝑛
+n.
+
+For two events 
+𝐴
+A and 
+𝐵
+B, the probability of their union is given by
+
+𝑃
+(
+𝐴
+∪
+𝐵
+)
+=
+𝑃
+(
+𝐴
+)
++
+𝑃
+(
+𝐵
+)
+−
+𝑃
+(
+𝐴
+∩
+𝐵
+)
+P(A∪B)=P(A)+P(B)−P(A∩B).
+If the events 
+𝐴
+A and 
+𝐵
+B are mutually exclusive, then the formula simplifies to
+
+𝑃
+(
+𝐴
+∪
+𝐵
+)
+=
+𝑃
+(
+𝐴
+)
++
+𝑃
+(
+𝐵
+)
+P(A∪B)=P(A)+P(B).
+
+When drawing objects such as balls or cards without replacement, if there are 
+𝑛
+n objects in total and 
+𝑟
+r objects are drawn, the total number of possible outcomes is 
+𝑛
+𝐶
+𝑟
+n
+C
+r
+	​
+
+. If among the total 
+𝑛
+n objects, 
+𝑟
+r objects are of a particular type, the probability of drawing one object of that type in a single draw is 
+𝑟
+𝑛
+n
+r
+	​
+
+.
+
+In problems involving drawing cards or balls without replacement, such as selecting a specific combination of objects, the probability is calculated by finding the number of favourable combinations and dividing it by the total number of possible combinations using the formula 
+𝑃
+(
+𝐸
+)
+=
+𝑛
+(
+𝐸
+)
+𝑛
+(
+𝑆
+)
+P(E)=
+n(S)
+n(E)
+	​
+
+.
+
+When solving such problems, it is important to remember that without replacement, the total number of outcomes and the number of favourable outcomes change with each draw. Failing to update these values correctly leads to incorrect probability calculations.
+
+For example, if a bag contains 4 red balls and 6 black balls, the total number of balls is 10, and the number of red balls is 4. These facts, along with the formulas above, are sufficient to solve problems such as finding the probability of drawing 2 red balls without replacement.
+                                 """
+    }
+    
+    # Solve
+    result = solver.solve(state)
+    
+    # Print results
+    print("\n" + "="*60)
+    print("FINAL RESULT")
+    print("="*60)
+    print(f"Answer: {result['final_answer']}")
+    print(f"Time: {result['execution_time_ms']}ms")
+    print(f"Iterations: {result['iteration_count']}")
+    print(f"Success: {result['success']}")
+    print("\nTrace:")
+    for i, entry in enumerate(result['solver_trace']):
+        print(f"\n{i+1}. {entry}")
