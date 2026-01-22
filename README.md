@@ -39,7 +39,7 @@ To ensure the system is production-ready, the Python execution environment is st
 
 ## Usage
 - Text: Type your math problem directly into the chat.
-- Image: Click the ➕ button to upload a photo/screenshot. Review the OCR text and click "Confirm & Solve."
+- Image: Click the 📷 button to upload a photo/screenshot. Review the OCR text and click "Confirm & Solve."
 - Audio: Click the 🎤 icon to speak your question. Review the transcript and click "Confirm & Solve."
 - Reasoning: Expand the "Mentor is thinking..." status box to see the full Chain of Thought (CoT), including the Python code executed by the agents.
 
