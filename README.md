@@ -23,25 +23,25 @@ The Self-Correction Loop
 If the Verifier rejects the Solver's answer, it appends a Mentor Note to the context and routes the state back to the Solver for a second attempt (Attempt 2).
 
 ## Tech Stack
-**LLM Inference:** Groq (Llama-3.1-70B & Llama-4-Scout)
-**Orchestration:** LangGraph
-**Vector Database:** ChromaDB
-**Embeddings:** HuggingFace all-mpnet-base-v2
-**OCR:** EasyOCR
-**ASR:** Groq Whisper-large-v3
-**Frontend:** Streamlit
+- **LLM Inference:** Groq (Llama-3.1-70B & Llama-4-Scout)
+- **Orchestration:** LangGraph
+- **Vector Database:** ChromaDB
+- **Embeddings:** HuggingFace all-mpnet-base-v2
+- **OCR:** EasyOCR
+- **ASR:** Groq Whisper-large-v3
+- **Frontend:** Streamlit
 
 ## Security: Hardened Python REPL
 To ensure the system is production-ready, the Python execution environment is strictly sandboxed:
-**AST Whitelisting:** Only allows mathematical nodes (BinOp, Call, Assign). Blocks Import, Attribute (prevents __dict__ attacks), and Subscript.
-**Process Isolation:** Every calculation runs in a separate multiprocessing.
-**Resource Guards:** 5-second hard timeout and output size limits to prevent DoS attacks.
+- **AST Whitelisting:** Only allows mathematical nodes (BinOp, Call, Assign). Blocks Import, Attribute (prevents __dict__ attacks), and Subscript.
+- **Process Isolation:** Every calculation runs in a separate multiprocessing.
+- **Resource Guards:** 5-second hard timeout and output size limits to prevent DoS attacks.
 
 ## Usage
-Text: Type your math problem directly into the chat.
-Image: Click the ➕ button to upload a photo/screenshot. Review the OCR text and click "Confirm & Solve."
-Audio: Click the 🎤 icon to speak your question. Review the transcript and click "Confirm & Solve."
-Reasoning: Expand the "Mentor is thinking..." status box to see the full Chain of Thought (CoT), including the Python code executed by the agents.
+- Text: Type your math problem directly into the chat.
+- Image: Click the ➕ button to upload a photo/screenshot. Review the OCR text and click "Confirm & Solve."
+- Audio: Click the 🎤 icon to speak your question. Review the transcript and click "Confirm & Solve."
+- Reasoning: Expand the "Mentor is thinking..." status box to see the full Chain of Thought (CoT), including the Python code executed by the agents.
 
 ### Developed by Pavithra A
 Built for the AI Engineer Assignment at AI Planet - Reliable Multimodal Math Mentor.
