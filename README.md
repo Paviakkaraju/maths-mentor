@@ -1,63 +1,47 @@
-## Project Structure
+# Math Mentor: A Reliable Multimodal Multi-Agent System
+Math Mentor is an end-to-end AI application designed to solve and explain JEE-style mathematics problems with 100% arithmetic reliability. Unlike standard LLMs that "guess" math results, Math Mentor uses a Multi-Agent Orchestration that reasons, writes code, and self-corrects through an independent audit loop.
 
-### Directory Layout
-```
-math-mentor/
-├── README.md
-├── requirements.txt
-├── .env.example
-├── .gitignore
-│
-├── app.py                              # Main Streamlit application
-│
-├── agents/
-│   ├── __init__.py
-│   ├── graph.py                        # LangGraph workflow definition
-│   ├── parser_agent.py                 # Question parsing
-│   ├── router_agent.py                 # Workflow routing
-│   ├── rag_agent.py                    # Retrieval agent
-│   ├── solver_agent.py                 # Problem solving
-│   ├── verifier_agent.py               # Solution verification
-│   ├── explainer_agent.py              # Explanation generation
-│   └── hitl_agent.py                   # Human-in-the-loop
-│
-├── rag/
-│   ├── __init__.py
-│   ├── embeddings.py                   # Embedding generation
-│   ├── retriever.py                    # ChromaDB retrieval
-│   └── build_knowledge_base.py         # KB building script
-│
-├── memory/
-│   ├── __init__.py
-│   ├── store.py                        # Memory storage
-│   └── session_manager.py              # Session state
-│
-├── utils/
-│   ├── __init__.py
-│   ├── llm.py                          # LLM management
-│   ├── prompts.py                      # Agent prompts
-│   ├── helpers.py                      # Utility functions
-│   └── validators.py                   # Input validation
-│
-├── knowledge_base/
-│   └── probability/
-│       ├── 01_foundations.md
-│       ├── 02_conditional_probability.md
-│       ├── 03_bayes_theorem.md
-│       ├── 04_counting_principles.md
-│       ├── 05_distributions.md
-│       ├── 06_problem_templates.md
-│       ├── 07_common_mistakes.md
-│       └── 08_verification_checklists.md
-│
-├── chroma_db/                          # Git-committed vector DB
-│   ├── chroma.sqlite3
-│   └── [UUID folders]
-│
-├── data/
-│   └── memory.json                     # Session memory persistence
-│
-└── tests/
-    ├── test_agents.py
-    ├── test_rag.py
-    └── test_memory.py
+
+## Key Features
+- Multimodal Input: Supports Text, Image (OCR via EasyOCR), and Audio (ASR via Groq Whisper).
+- Agentic Workflow: Orchestrated by LangGraph, featuring a team of specialized agents.
+- Zero-Hallucination Math: A Solver Agent that executes symbolic math in a Hardened Python REPL (SymPy/NumPy).
+- Self-Correction Loop: A Verifier Agent that independently audits the solver's logic and triggers autonomous retries if errors are detected.
+- Agentic RAG: Retrieves and "consolidates" math formulas into high-density context for the agents.
+- Human-in-the-Loop (HITL): Mandatory review step for OCR/ASR extractions to ensure "Garbage In, Garbage Out" is avoided.
+- Pedagogical Explanations: An Explainer Agent that provides student-friendly lessons with analogies and key concepts.
+
+## Architecture: The Multi-Agent Brain
+The system is built on a **StateGraph** where data flows through specialized nodes:
+- **Parser Agent:** Cleans input and identifies mathematical intent.
+- **Intent Router:** Categorizes queries into conceptual (definitions) or computational (solving) paths.
+- **RAG Agent:** Performs semantic search on a curated knowledge base and synthesizes a "Cheat Sheet."
+- **Solver Agent (ReAct):** Plans the solution and executes Python code.
+- **Verifier Agent:** The "Critic" that performs a reverse-check on the solver's result.
+- **Explainer Agent:** The "Tutor" that formats the final pedagogical output.
+The Self-Correction Loop
+If the Verifier rejects the Solver's answer, it appends a Mentor Note to the context and routes the state back to the Solver for a second attempt (Attempt 2).
+
+## Tech Stack
+**LLM Inference:** Groq (Llama-3.1-70B & Llama-4-Scout)
+**Orchestration:** LangGraph
+**Vector Database:** ChromaDB
+**Embeddings:** HuggingFace all-mpnet-base-v2
+**OCR:** EasyOCR
+**ASR:** Groq Whisper-large-v3
+**Frontend:** Streamlit
+
+## Security: Hardened Python REPL
+To ensure the system is production-ready, the Python execution environment is strictly sandboxed:
+**AST Whitelisting:** Only allows mathematical nodes (BinOp, Call, Assign). Blocks Import, Attribute (prevents __dict__ attacks), and Subscript.
+**Process Isolation:** Every calculation runs in a separate multiprocessing.
+**Resource Guards:** 5-second hard timeout and output size limits to prevent DoS attacks.
+
+## Usage
+Text: Type your math problem directly into the chat.
+Image: Click the ➕ button to upload a photo/screenshot. Review the OCR text and click "Confirm & Solve."
+Audio: Click the 🎤 icon to speak your question. Review the transcript and click "Confirm & Solve."
+Reasoning: Expand the "Mentor is thinking..." status box to see the full Chain of Thought (CoT), including the Python code executed by the agents.
+
+### Developed by Pavithra A
+Built for the AI Engineer Assignment at AI Planet - Reliable Multimodal Math Mentor.
