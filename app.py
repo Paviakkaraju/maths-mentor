@@ -14,6 +14,7 @@ from utils.audio_processor import AudioProcessor
 # 1. Page Config
 st.set_page_config(page_title="AI Math Mentor", page_icon="🎓", layout="wide")
 load_dotenv()
+model_name = os.getenv("MODEL", "meta-llama/llama-4-scout-17b-16e-instruct")
 
 
 # Custom CSS for better input styling
@@ -70,24 +71,6 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
-# 2. Sidebar Stats
-with st.sidebar:
-    st.title("📊 System Stats")
-    model_name = os.getenv("MODEL", "meta-llama/llama-4-scout-17b-16e-instruct")
-    st.info(f"**Model:** {model_name}")
-    
-    # Add actual token tracking if available
-    if "total_tokens" in st.session_state:
-        st.metric(label="Token Usage", value=f"{st.session_state.total_tokens}")
-    else:
-        st.metric(label="Token Usage", value="~ 0")
-    
-    st.caption("v1.0 MVP - Multimodal Math Mentor")
-    
-    # Debug toggle
-    st.session_state.show_debug = st.checkbox("Show Debug Info", value=False)
-
-
 @st.cache_resource
 def get_image_processor():
     """Initialize and cache the image processor"""
@@ -138,6 +121,8 @@ if "processing_audio" not in st.session_state:
     st.session_state.processing_audio = False
 if "final_query" not in st.session_state:
     st.session_state.final_query = ""
+if "show_debug" not in st.session_state:
+    st.session_state.show_debug = False
 
 
 # Display chat history
